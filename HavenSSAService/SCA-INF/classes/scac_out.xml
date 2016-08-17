@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Faults>
+   <Fault>
+      <severity>warning</severity>
+      <loc>/ns:composite/ns:reference[@name='InvokeFedSSA']</loc>
+      <line>41</line>
+      <col>76</col>
+      <file>/Users/burujukati/jdeveloper/mywork/Test/HavenSSAService/composite.xml</file>
+      <name>/Users/burujukati/jdeveloper/mywork/Test/HavenSSAService/composite.xml</name>
+      <fix/>
+      <msg>Failed to Find Binding "InvokeFedSSA":"{http://extn.ssac.ee.sim.dsh.cms.hhs.gov}SSACompositePort" in WSDL Manager</msg>
+   </Fault>
+</Faults>

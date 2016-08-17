@@ -1,0 +1,392 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Fri Jul 15 10:14:11 EDT 2016
+  Author:  burujukati
+  Type: BPEL 2.0 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="HavenSSAServiceBpel"
+               targetNamespace="http://xmlns.oracle.com/Test/HavenSSAService/HavenSSAServiceBpel"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/Test/HavenSSAService/HavenSSAServiceBpel"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/jms/Test/HavenSSAService/ConsumeMessageFromJMS"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/jms/Test/HavenSSAService/PublishMessageToJMS"
+         xmlns:ns3="http://extn.ssac.ee.sim.dsh.cms.hhs.gov"
+         xmlns:ns4="http://xmlns.oracle.com/DCAS_DEV5/ErrorHandlingDCASCmpService/ErrorHandlingDCASABCSImpl"
+         xmlns:ns5="ns19"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns6="http://xmlns.dhs.dc.gov/DCAS/ESB/ErrorHandlingService/V1">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <import namespace="http://schemas.oracle.com/bpel/extension"
+          location="RuntimeFault.wsdl"
+          importType="http://schemas.xmlsoap.org/wsdl/"/>
+  <partnerLinks>
+    <partnerLink name="ConsumeMessageFromJMS"
+                 partnerLinkType="ns1:Consume_Message_plt"
+                 myRole="Consume_Message_role"/>
+    <partnerLink name="PublishMessageToJMS"
+                 partnerLinkType="ns2:Produce_Message_plt"
+                 partnerRole="Produce_Message_role"/>
+    <partnerLink name="InvokeFedSSA" partnerLinkType="ns3:InvokeFedSSA"
+                 partnerRole="SsaCompositePortType"/>
+    <partnerLink name="ErrorHandling"
+                 partnerLinkType="ns4:ErrorHandlingDCASABCSImpl"
+                 partnerRole="ErrorHandlingDCASABCSImplProvider"/>
+  </partnerLinks>
+  <variables>
+    <variable name="ConsumeMessage__InputVariable"
+              messageType="ns1:Consume_Message_msg"/>
+    <variable name="InvokeFedSSA_VerifySSA_InputVariable"
+              messageType="ns3:SSACompositeRequest"/>
+    <variable name="InvokeFedSSA_VerifySSA_OutputVariable"
+              messageType="ns3:SSACompositeResponse"/>
+    <variable name="PublishResponseToJMS_InputVariable"
+              messageType="ns2:Produce_Message_msg"/>
+              <variable name="InvokeErrorHandling_InputVariable"
+              messageType="ns4:ErrorHandlingDCASABCSImplRequestMessage"/>
+    <variable name="InvokeErrorPublishJMS_InputVariable"
+              messageType="ns2:Produce_Message_msg"/>
+    <variable name="FaultVar" messageType="bpelx:RuntimeFaultMessage"/>
+  </variables>
+  <faultHandlers>
+    <catch faultName="bpelx:bindingFault" faultVariable="FaultVar"
+           faultMessageType="bpelx:RuntimeFaultMessage">
+      <sequence name="Sequence3">
+        <assign name="Assign_Binding">
+          <copy>
+            <from>ora:generateGUID()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:GUID</to>
+          </copy>
+          <copy>
+            <from>ora:getCurrentDateTime()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Footer/ns6:TimeStamp</to>
+          </copy>
+          <copy>
+            <from>ora:getCompositeName()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:ServiceName</to>
+          </copy>
+          <copy>
+            <from>ora:getCompositeName()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:CompositeName</to>
+          </copy>
+          <copy>
+            <from>ora:getComponentName()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:Component</to>
+          </copy>
+          <copy>
+            <from>ora:getCompositeInstanceId()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:InstanceID</to>
+          </copy>
+          <copy>
+            <from>'ESB_01'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:SenderID</to>
+          </copy>
+          <copy>
+            <from>'ESB'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:SenderName</to>
+          </copy>
+          <copy>
+            <from>'FED_01'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:TargetID</to>
+          </copy>
+          <copy>
+            <from>'HAVEN_01'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:SourceID</to>
+          </copy>
+          <copy>
+            <from>'DEV'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:EnvironmentName</to>
+          </copy>
+          <copy>
+            <from>$FaultVar.code</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:MessageBody/ns6:ErrorCode</to>
+          </copy>
+          <copy>
+            <from>$FaultVar.summary</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:MessageBody/ns6:ErrorDesc</to>
+          </copy>
+          <copy>
+            <from>$FaultVar.detail</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:MessageBody/ns6:ErrorMsg</to>
+          </copy>
+          <copy>
+            <from>'REMOTE_01'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:MessageBody/ns6:ErrorType</to>
+          </copy>
+          <copy>
+            <from>'1'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:MessageBody/ns6:ErrorSeverity</to>
+          </copy>
+        </assign>
+        <invoke name="InvokeErrorHandling" partnerLink="ErrorHandling"
+                portType="ns4:ErrorHandlingDCASABCSImpl" operation="process"
+                inputVariable="InvokeErrorHandling_InputVariable"
+                bpelx:invokeAsDetail="no"/>
+        <assign name="Xform_BindingErrorResp">
+          <bpelx:annotation>
+            <bpelx:pattern patternName="bpelx:transformation"/>
+          </bpelx:annotation>
+          <copy>
+            <from>ora:doXSLTransformForDoc("xsl/Transformation_ErrorPublish.xsl", $ConsumeMessage__InputVariable.body, "InvokeFedSSA_VerifySSA_OutputVariable.body", $InvokeFedSSA_VerifySSA_OutputVariable.body)</from>
+            <to variable="PublishResponseToJMS_InputVariable" part="body"/>
+          </copy>
+        </assign>
+        <invoke name="InvokeErrorPublishJMS"
+                partnerLink="PublishMessageToJMS"
+                portType="ns2:Produce_Message_ptt"
+                operation="Produce_Message"
+                inputVariable="PublishResponseToJMS_InputVariable"
+                bpelx:invokeAsDetail="no"/>
+      </sequence>
+    </catch>
+    <catch faultName="bpelx:remoteFault" faultVariable="FaultVar"
+           faultMessageType="bpelx:RuntimeFaultMessage">
+      <sequence name="Sequence2">
+        <assign name="Assign_Remote">
+          <copy>
+            <from>ora:generateGUID()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:GUID</to>
+          </copy>
+          <copy>
+            <from>ora:getCurrentDateTime()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Footer/ns6:TimeStamp</to>
+          </copy>
+          <copy>
+            <from>$FaultVar.detail</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:MessageBody/ns6:ErrorMsg</to>
+          </copy>
+          <copy>
+            <from>'REMOTE_01'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:MessageBody/ns6:ErrorType</to>
+          </copy>
+          <copy>
+            <from>'1'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:MessageBody/ns6:ErrorSeverity</to>
+          </copy>
+          <copy>
+            <from>ora:getCompositeInstanceId()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:InstanceID</to>
+          </copy>
+          <copy>
+            <from>ora:getComponentName()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:Component</to>
+          </copy>
+          <copy>
+            <from>$FaultVar.code</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:MessageBody/ns6:ErrorCode</to>
+          </copy>
+          <copy>
+            <from>$FaultVar.summary</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:MessageBody/ns6:ErrorDesc</to>
+          </copy>
+          <copy>
+            <from>ora:getCompositeName()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:ServiceName</to>
+          </copy>
+          <copy>
+            <from>ora:getCompositeName()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:CompositeName</to>
+          </copy>
+          <copy>
+            <from>'DEV'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:EnvironmentName</to>
+          </copy>
+          <copy>
+            <from>'FED_01'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:TargetID</to>
+          </copy>
+          <copy>
+            <from>'HAVEN_01'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:SourceID</to>
+          </copy>
+          <copy>
+            <from>'ESB_01'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:SenderID</to>
+          </copy>
+          <copy>
+            <from>'ESB'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:SenderName</to>
+          </copy>
+        </assign>
+        <invoke name="InvokeErrorHandling" partnerLink="ErrorHandling"
+                portType="ns4:ErrorHandlingDCASABCSImpl" operation="process"
+                inputVariable="InvokeErrorHandling_InputVariable"
+                bpelx:invokeAsDetail="no"/>
+        <assign name="Xform_RemoteErrorResp">
+          <bpelx:annotation>
+            <bpelx:pattern patternName="bpelx:transformation"/>
+          </bpelx:annotation>
+          <copy>
+            <from>ora:doXSLTransformForDoc("xsl/Transformation_RemoteError.xsl", $ConsumeMessage__InputVariable.body, "InvokeFedSSA_VerifySSA_OutputVariable.body", $InvokeFedSSA_VerifySSA_OutputVariable.body)</from>
+            <to variable="PublishResponseToJMS_InputVariable" part="body"/>
+          </copy>
+        </assign>
+        <invoke name="InvokeErrorPublishJMS" partnerLink="PublishMessageToJMS"
+                portType="ns2:Produce_Message_ptt" operation="Produce_Message"
+                inputVariable="PublishResponseToJMS_InputVariable"
+                bpelx:invokeAsDetail="no"/>
+      </sequence>
+    </catch>
+    <catchAll>
+      <sequence name="Sequence1">
+        <assign name="AssignFault">
+          <copy>
+            <from>ora:getFaultAsString()</from>
+            <to>$FaultVar.summary</to>
+          </copy>
+          <copy>
+            <from>ora:getFaultName()</from>
+            <to>$FaultVar.detail</to>
+          </copy>
+          <copy>
+            <from>"SSAFaultCode"</from>
+            <to>$FaultVar.code</to>
+          </copy>
+        </assign>
+        <assign name="Assign_Generic">
+          <copy>
+            <from>ora:getCompositeName()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:ServiceName</to>
+          </copy>
+          <copy>
+            <from>ora:getCompositeName()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:CompositeName</to>
+          </copy>
+          <copy>
+            <from>ora:generateGUID()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:GUID</to>
+          </copy>
+          <copy>
+            <from>ora:getCurrentDateTime()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Footer/ns6:TimeStamp</to>
+          </copy>
+          <copy>
+            <from>ora:getCompositeInstanceId()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:InstanceID</to>
+          </copy>
+          <copy>
+            <from>ora:getComponentName()</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:Component</to>
+          </copy>
+          <copy>
+            <from>'FED_01'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:TargetID</to>
+          </copy>
+          <copy>
+            <from>'HAVEN_01'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:SourceID</to>
+          </copy>
+          <copy>
+            <from>'DEV'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:EnvironmentName</to>
+          </copy>
+          <copy>
+            <from>$FaultVar.code</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:MessageBody/ns6:ErrorCode</to>
+          </copy>
+          <copy>
+            <from>$FaultVar.summary</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:MessageBody/ns6:ErrorDesc</to>
+          </copy>
+          <copy>
+            <from>$FaultVar.detail</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:MessageBody/ns6:ErrorMsg</to>
+          </copy>
+          <copy>
+            <from>'REMOTE_01'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:MessageBody/ns6:ErrorType</to>
+          </copy>
+          <copy>
+            <from>'1'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:MessageBody/ns6:ErrorSeverity</to>
+          </copy>
+          <copy>
+            <from>'ESB_01'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:SenderID</to>
+          </copy>
+          <copy>
+            <from>'ESB'</from>
+            <to>$InvokeErrorHandling_InputVariable.payload/ns6:Header/ns6:SenderName</to>
+          </copy>
+        </assign>
+        <invoke name="InvokeErrorHandling" partnerLink="ErrorHandling"
+                portType="ns4:ErrorHandlingDCASABCSImpl" operation="process"
+                inputVariable="InvokeErrorHandling_InputVariable"
+                bpelx:invokeAsDetail="no"/>
+        <assign name="Xform_catchAll">
+          <bpelx:annotation>
+            <bpelx:pattern patternName="bpelx:transformation"/>
+          </bpelx:annotation>
+          <copy>
+            <from>ora:doXSLTransformForDoc("xsl/Transformation_ErrorCatchAll.xsl", $ConsumeMessage__InputVariable.body, "InvokeFedSSA_VerifySSA_OutputVariable.body", $InvokeFedSSA_VerifySSA_OutputVariable.body)</from>
+            <to variable="PublishResponseToJMS_InputVariable" part="body"/>
+          </copy>
+        </assign>
+        <invoke name="InvokeErrorPublishJMS"
+                partnerLink="PublishMessageToJMS"
+                portType="ns2:Produce_Message_ptt"
+                operation="Produce_Message"
+                inputVariable="PublishResponseToJMS_InputVariable"
+                bpelx:invokeAsDetail="no"/>
+      </sequence>
+    </catchAll>
+  </faultHandlers>
+  <sequence name="main">
+    <receive name="ConsumeMessage" createInstance="yes"
+             partnerLink="ConsumeMessageFromJMS"
+             portType="ns1:Consume_Message_ptt" operation="Consume_Message"
+             variable="ConsumeMessage__InputVariable"/>
+    <assign name="HavenReqToFedReq">
+      <bpelx:annotation>
+        <bpelx:pattern patternName="bpelx:transformation"/>
+      </bpelx:annotation>
+      <copy>
+        <from>ora:doXSLTransformForDoc("xsl/Request.xsl", $ConsumeMessage__InputVariable.body)</from>
+        <to variable="InvokeFedSSA_VerifySSA_InputVariable" part="body"/>
+      </copy>
+    </assign>
+    <invoke name="InvokeFedSSA"
+            partnerLink="InvokeFedSSA" portType="ns3:SsaCompositePortType"
+            operation="VerifySSA"
+            inputVariable="InvokeFedSSA_VerifySSA_InputVariable"
+            outputVariable="InvokeFedSSA_VerifySSA_OutputVariable"
+            bpelx:invokeAsDetail="no"/>
+    <assign name="FedResToHavenRes">
+      <bpelx:annotation>
+        <bpelx:pattern patternName="bpelx:transformation"/>
+      </bpelx:annotation>
+      <copy>
+        <from>ora:doXSLTransformForDoc("xsl/Response.xsl", $InvokeFedSSA_VerifySSA_OutputVariable.body, "ConsumeMessage__InputVariable.body", $ConsumeMessage__InputVariable.body)</from>
+        <to variable="PublishResponseToJMS_InputVariable" part="body"/>
+      </copy>
+    </assign>
+    <invoke name="PublishResponseToJMS"
+            partnerLink="PublishMessageToJMS"
+            portType="ns2:Produce_Message_ptt" operation="Produce_Message"
+            inputVariable="PublishResponseToJMS_InputVariable"
+            bpelx:invokeAsDetail="no"/>
+  </sequence>
+</process>

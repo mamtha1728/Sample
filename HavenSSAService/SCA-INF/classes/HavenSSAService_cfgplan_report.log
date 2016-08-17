@@ -1,0 +1,50 @@
+Modified Composite [ HavenSSAService ]
+  Composite properties
+	Property [ productVersion ]
+		No change in old and new value 11.1.1.7.8 
+	Component
+	  Component  [ HavenSSAServiceBpel ]
+	    Property [ bpel.config.transaction ]
+		No change in old and new value required 
+	    Property [ bpel.config.oneWayDeliveryPolicy ]
+		No change in old and new value sync 
+	Service
+	  Service  [ ConsumeMessageFromJMS ]
+	    Service Bindings
+	  	Binding  [ jca ]
+	Reference
+	  Reference  [ PublishMessageToJMS ]
+	    Reference Bindings
+	  	Binding  [ jca ]
+	  Reference  [ InvokeFedSSA ]
+	    Reference Bindings
+	  	Binding  [ ws ]
+	    Property [ oracle.soa.ws.outbound.omitWSA ]
+		No change in old and new value true 
+	    Property [ weblogic.wsee.wsat.transaction.flowOption ]
+		No change in old and new value WSDLDriven 
+	    Property [ oracle.webservices.httpReadTimeout ]
+		No change in old and new value 30000 
+	    Property [ csf-key ]
+		No change in old and new value osb.system.user 
+	Attribute name=port
+		No change in old and new value http://extn.ssac.ee.sim.dsh.cms.hhs.gov#wsdl.endpoint(SSACompositeService/SSACompositePort) 
+	Attribute name=location
+		No change in old and new value https://dhsdcaswlesb001.dhs.dc.gov:8012/FedHub/SSA/FedProxyService?wsdl 
+	  Reference  [ ErrorHandling ]
+	    Reference Bindings
+	  	Binding  [ ws ]
+	    Property [ csf-key ]
+		No change in old and new value soa.system.user 
+	    Property [ oracle.webservices.httpReadTimeout ]
+		No change in old and new value 30000 
+	    Property [ oracle.webservices.local.optimization ]
+		No change in old and new value false 
+	    Property [ weblogic.wsee.wsat.transaction.flowOption ]
+		No change in old and new value WSDLDriven 
+	Attribute name=port
+		No change in old and new value http://xmlns.oracle.com/DCAS_DEV5/ErrorHandlingDCASCmpService/ErrorHandlingDCASABCSImpl#wsdl.endpoint(errorhandlingdcasabcsimpl_client_ep/ErrorHandlingDCASABCSImpl_pt) 
+	Attribute name=location
+		No change in old and new value http://DHSDCASESBSOAAPPUAT01.dhs.dc.gov:8001/soa-infra/services/Common/ErrorHandlingDCASCmpService/errorhandlingdcasabcsimpl_client_ep?WSDL 
+---End Match for composite [ HavenSSAService ] in config plan---
+Checking for replacement in wsdl and schema files

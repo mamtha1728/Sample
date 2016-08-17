@@ -1,0 +1,15 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+    
+     targetNamespace="http://extn.ssac.ee.sim.dsh.cms.hhs.gov"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:WL5G3N2="http://extn.ssac.ee.sim.dsh.cms.hhs.gov"
+     xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+    >
+    <plnk:partnerLinkType name="InvokeFedSSA">
+        <plnk:role name="SsaCompositePortType" portType="WL5G3N2:SsaCompositePortType"/>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://extn.ssac.ee.sim.dsh.cms.hhs.gov" location="SSAFedProxyService.wsdl"/>
+</wsdl:definitions>

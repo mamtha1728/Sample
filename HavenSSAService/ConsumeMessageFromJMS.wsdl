@@ -1,0 +1,29 @@
+<wsdl:definitions
+     name="ConsumeMessageFromJMS"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/jms/Test/HavenSSAService/ConsumeMessageFromJMS"
+     xmlns:pc="http://xmlns.oracle.com/pcbpel/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:imp1="http://ssac.ee.sim.dsh.cms.hhs.gov"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/jms/Test/HavenSSAService/ConsumeMessageFromJMS"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+    >
+  <plt:partnerLinkType name="Consume_Message_plt" >
+    <plt:role name="Consume_Message_role" >
+      <plt:portType name="tns:Consume_Message_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://ssac.ee.sim.dsh.cms.hhs.gov" schemaLocation="xsd/exchange.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="Consume_Message_msg">
+        <wsdl:part name="body" element="imp1:SSACompositeRequest"/>
+    </wsdl:message>
+    <wsdl:portType name="Consume_Message_ptt">
+        <wsdl:operation name="Consume_Message">
+            <wsdl:input message="tns:Consume_Message_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

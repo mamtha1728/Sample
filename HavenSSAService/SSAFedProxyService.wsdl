@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<WL5G3N0:definitions targetNamespace="http://extn.ssac.ee.sim.dsh.cms.hhs.gov" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="http://ssac.ee.sim.dsh.cms.hhs.gov" xmlns:WL5G3N2="http://extn.ssac.ee.sim.dsh.cms.hhs.gov" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap12/">
+   <WL5G3N0:types>
+      <xsd:schema targetNamespace="http://ssac.ee.sim.dsh.cms.hhs.gov" xmlns:exch="http://ssac.ee.sim.dsh.cms.hhs.gov" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://extn.ssac.ee.sim.dsh.cms.hhs.gov" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+         <xsd:include schemaLocation="xsd/exchange.xsd"/>
+      </xsd:schema>
+   </WL5G3N0:types>
+   <WL5G3N0:message name="SSACompositeRequest">
+      <WL5G3N0:part element="WL5G3N1:SSACompositeRequest" name="body"/>
+   </WL5G3N0:message>
+   <WL5G3N0:message name="SSACompositeResponse">
+      <WL5G3N0:part element="WL5G3N1:SSACompositeResponse" name="body"/>
+   </WL5G3N0:message>
+   <WL5G3N0:portType name="SsaCompositePortType">
+      <WL5G3N0:operation name="VerifySSA">
+         <WL5G3N0:input message="WL5G3N2:SSACompositeRequest"/>
+         <WL5G3N0:output message="WL5G3N2:SSACompositeResponse"/>
+      </WL5G3N0:operation>
+   </WL5G3N0:portType>
+   <WL5G3N0:binding name="SsaCompositeSoapBinding" type="WL5G3N2:SsaCompositePortType">
+      <WL5G3N3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <WL5G3N0:operation name="VerifySSA">
+         <WL5G3N3:operation/>
+         <WL5G3N0:input>
+            <WL5G3N3:body use="literal"/>
+         </WL5G3N0:input>
+         <WL5G3N0:output>
+            <WL5G3N3:body use="literal"/>
+         </WL5G3N0:output>
+      </WL5G3N0:operation>
+   </WL5G3N0:binding>
+</WL5G3N0:definitions>
