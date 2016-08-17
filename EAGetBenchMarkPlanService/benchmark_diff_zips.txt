@@ -1,0 +1,1229 @@
+<coverage_quote_request xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bench="http://openhbx.org/api/terms/1.0" xmlns="http://openhbx.org/api/terms/1.0">
+<bench:enrollees><bench:enrollee>
+<bench:member>
+<bench:id>
+<bench:id>1000202</bench:id>
+</bench:id>
+<bench:person>
+<bench:id>
+<bench:id>1000202</bench:id>
+</bench:id>
+<bench:person_name>
+<bench:person_surname>smith</bench:person_surname>
+<bench:person_given_name>husband</bench:person_given_name>
+</bench:person_name>
+<bench:addresses>
+<bench:address>
+<bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+<bench:address_line_1>609 H St NE</bench:address_line_1>
+<bench:location_city_name>WASHINGTON</bench:location_city_name>
+<bench:location_state_code>DC</bench:location_state_code>
+<bench:postal_code>20059</bench:postal_code>
+</bench:address>
+</bench:addresses>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person>
+<bench:person_relationships>
+<bench:person_relationship>
+<bench:subject_individual>
+<bench:id>1000202</bench:id>
+</bench:subject_individual>
+<bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#self</bench:relationship_uri>
+<bench:object_individual>
+<bench:id>1000202</bench:id>
+</bench:object_individual>
+</bench:person_relationship>
+</bench:person_relationships>
+<bench:person_demographics>
+
+<bench:sex>urn:openhbx:terms:v1:gender#male</bench:sex>
+<bench:birth_date>19760101</bench:birth_date>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person_demographics>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:member>
+<bench:is_subscriber>true</bench:is_subscriber>
+<bench:benefit>
+<bench:premium_amount>00.00</bench:premium_amount>
+<bench:begin_date>20160901</bench:begin_date>
+</bench:benefit>
+</bench:enrollee><bench:enrollee>
+<bench:member>
+<bench:id>
+<bench:id>1000201</bench:id>
+</bench:id>
+<bench:person>
+<bench:id>
+<bench:id>1000201</bench:id>
+</bench:id>
+<bench:person_name>
+<bench:person_surname>smith</bench:person_surname>
+<bench:person_given_name>parentone</bench:person_given_name>
+</bench:person_name>
+<bench:addresses>
+<bench:address>
+<bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+<bench:address_line_1>609 H St NE</bench:address_line_1>
+<bench:location_city_name>WASHINGTON</bench:location_city_name>
+<bench:location_state_code>DC</bench:location_state_code>
+<bench:postal_code>20012</bench:postal_code>
+</bench:address>
+</bench:addresses>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person>
+<bench:person_relationships>
+<bench:person_relationship>
+<bench:subject_individual>
+<bench:id>1000201</bench:id>
+</bench:subject_individual>
+<bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#parent</bench:relationship_uri>
+<bench:object_individual>
+<bench:id>1000201</bench:id>
+</bench:object_individual>
+</bench:person_relationship>
+</bench:person_relationships>
+<bench:person_demographics>
+
+<bench:sex>urn:openhbx:terms:v1:gender#male</bench:sex>
+<bench:birth_date>19500101</bench:birth_date>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person_demographics>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:member>
+<bench:is_subscriber>true</bench:is_subscriber>
+<bench:benefit>
+<bench:premium_amount>00.00</bench:premium_amount>
+<bench:begin_date>20160901</bench:begin_date>
+</bench:benefit>
+</bench:enrollee><bench:enrollee>
+<bench:member>
+<bench:id>
+<bench:id>1000207</bench:id>
+</bench:id>
+<bench:person>
+<bench:id>
+<bench:id>1000207</bench:id>
+</bench:id>
+<bench:person_name>
+<bench:person_surname>smith</bench:person_surname>
+<bench:person_given_name>parenttwo</bench:person_given_name>
+</bench:person_name>
+<bench:addresses>
+<bench:address>
+<bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+<bench:address_line_1>609 H St NE</bench:address_line_1>
+<bench:location_city_name>WASHINGTON</bench:location_city_name>
+<bench:location_state_code>DC</bench:location_state_code>
+<bench:postal_code>20020</bench:postal_code>
+</bench:address>
+</bench:addresses>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person>
+<bench:person_relationships>
+<bench:person_relationship>
+<bench:subject_individual>
+<bench:id>1000207</bench:id>
+</bench:subject_individual>
+<bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#parent</bench:relationship_uri>
+<bench:object_individual>
+<bench:id>1000207</bench:id>
+</bench:object_individual>
+</bench:person_relationship>
+</bench:person_relationships>
+<bench:person_demographics>
+
+<bench:sex>urn:openhbx:terms:v1:gender#female</bench:sex>
+<bench:birth_date>19530101</bench:birth_date>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person_demographics>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:member>
+<bench:is_subscriber>true</bench:is_subscriber>
+<bench:benefit>
+<bench:premium_amount>00.00</bench:premium_amount>
+<bench:begin_date>20160901</bench:begin_date>
+</bench:benefit>
+</bench:enrollee><bench:enrollee>
+<bench:member>
+<bench:id>
+<bench:id>1000200</bench:id>
+</bench:id>
+<bench:person>
+<bench:id>
+<bench:id>1000200</bench:id>
+</bench:id>
+<bench:person_name>
+<bench:person_surname>smith</bench:person_surname>
+<bench:person_given_name>sibtwo</bench:person_given_name>
+</bench:person_name>
+<bench:addresses>
+<bench:address>
+<bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+<bench:address_line_1>609 H St NE</bench:address_line_1>
+<bench:location_city_name>WASHINGTON</bench:location_city_name>
+<bench:location_state_code>DC</bench:location_state_code>
+<bench:postal_code>20002</bench:postal_code>
+</bench:address>
+</bench:addresses>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person>
+<bench:person_relationships>
+<bench:person_relationship>
+<bench:subject_individual>
+<bench:id>1000200</bench:id>
+</bench:subject_individual>
+<bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#sibling</bench:relationship_uri>
+<bench:object_individual>
+<bench:id>1000200</bench:id>
+</bench:object_individual>
+</bench:person_relationship>
+</bench:person_relationships>
+<bench:person_demographics>
+<bench:sex>urn:openhbx:terms:v1:gender#female</bench:sex>
+<bench:birth_date>19840101</bench:birth_date>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person_demographics>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:member>
+<bench:is_subscriber>true</bench:is_subscriber>
+<bench:benefit>
+<bench:premium_amount>00.00</bench:premium_amount>
+<bench:begin_date>20160901</bench:begin_date>
+</bench:benefit>
+</bench:enrollee><bench:enrollee>
+<bench:member>
+<bench:id>
+<bench:id>1000204</bench:id>
+</bench:id>
+<bench:person>
+<bench:id>
+<bench:id>1000204</bench:id>
+</bench:id>
+<bench:person_name>
+<bench:person_surname>smith</bench:person_surname>
+<bench:person_given_name>sibone</bench:person_given_name>
+</bench:person_name>
+<bench:addresses>
+<bench:address>
+<bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+<bench:address_line_1>609 H St NE</bench:address_line_1>
+<bench:location_city_name>WASHINGTON</bench:location_city_name>
+<bench:location_state_code>DC</bench:location_state_code>
+<bench:postal_code>20501</bench:postal_code>
+</bench:address>
+</bench:addresses>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person>
+<bench:person_relationships>
+<bench:person_relationship>
+<bench:subject_individual>
+<bench:id>1000204</bench:id>
+</bench:subject_individual>
+<bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#sibling</bench:relationship_uri>
+<bench:object_individual>
+<bench:id>1000204</bench:id>
+</bench:object_individual>
+</bench:person_relationship>
+</bench:person_relationships>
+<bench:person_demographics>
+
+<bench:sex>urn:openhbx:terms:v1:gender#male</bench:sex>
+<bench:birth_date>19960101</bench:birth_date>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person_demographics>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:member>
+<bench:is_subscriber>true</bench:is_subscriber>
+<bench:benefit>
+<bench:premium_amount>00.00</bench:premium_amount>
+<bench:begin_date>20160901</bench:begin_date>
+</bench:benefit>
+</bench:enrollee><bench:enrollee>
+<bench:member>
+<bench:id>
+<bench:id>1000203</bench:id>
+</bench:id>
+<bench:person>
+<bench:id>
+<bench:id>1000203</bench:id>
+</bench:id>
+<bench:person_name>
+<bench:person_surname>smith</bench:person_surname>
+<bench:person_given_name>childtwo</bench:person_given_name>
+</bench:person_name>
+<bench:addresses>
+<bench:address>
+<bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+<bench:address_line_1>609 H St NE</bench:address_line_1>
+<bench:location_city_name>WASHINGTON</bench:location_city_name>
+<bench:location_state_code>DC</bench:location_state_code>
+<bench:postal_code>20026</bench:postal_code>
+</bench:address>
+</bench:addresses>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person>
+<bench:person_relationships>
+<bench:person_relationship>
+<bench:subject_individual>
+<bench:id>1000203</bench:id>
+</bench:subject_individual>
+<bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#child</bench:relationship_uri>
+<bench:object_individual>
+<bench:id>1000203</bench:id>
+</bench:object_individual>
+</bench:person_relationship>
+</bench:person_relationships>
+<bench:person_demographics>
+
+<bench:sex>urn:openhbx:terms:v1:gender#female</bench:sex>
+<bench:birth_date>19970101</bench:birth_date>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person_demographics>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:member>
+<bench:is_subscriber>true</bench:is_subscriber>
+<bench:benefit>
+<bench:premium_amount>00.00</bench:premium_amount>
+<bench:begin_date>20160901</bench:begin_date>
+</bench:benefit>
+</bench:enrollee><bench:enrollee>
+<bench:member>
+<bench:id>
+<bench:id>1000206</bench:id>
+</bench:id>
+<bench:person>
+<bench:id>
+<bench:id>1000206</bench:id>
+</bench:id>
+<bench:person_name>
+<bench:person_surname>smith</bench:person_surname>
+<bench:person_given_name>wife</bench:person_given_name>
+</bench:person_name>
+<bench:addresses>
+<bench:address>
+<bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+<bench:address_line_1>609 H St NE</bench:address_line_1>
+<bench:location_city_name>WASHINGTON</bench:location_city_name>
+<bench:location_state_code>DC</bench:location_state_code>
+<bench:postal_code>20016</bench:postal_code>
+</bench:address>
+</bench:addresses>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person>
+<bench:person_relationships>
+<bench:person_relationship>
+<bench:subject_individual>
+<bench:id>1000206</bench:id>
+</bench:subject_individual>
+<bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#spouse</bench:relationship_uri>
+<bench:object_individual>
+<bench:id>1000206</bench:id>
+</bench:object_individual>
+</bench:person_relationship>
+</bench:person_relationships>
+<bench:person_demographics>
+
+<bench:sex>urn:openhbx:terms:v1:gender#female</bench:sex>
+<bench:birth_date>19780101</bench:birth_date>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person_demographics>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:member>
+<bench:is_subscriber>true</bench:is_subscriber>
+<bench:benefit>
+<bench:premium_amount>00.00</bench:premium_amount>
+<bench:begin_date>20160901</bench:begin_date>
+</bench:benefit>
+</bench:enrollee><bench:enrollee>
+<bench:member>
+<bench:id>
+<bench:id>1000205</bench:id>
+</bench:id>
+<bench:person>
+<bench:id>
+<bench:id>1000205</bench:id>
+</bench:id>
+<bench:person_name>
+<bench:person_surname>smith</bench:person_surname>
+<bench:person_given_name>childone</bench:person_given_name>
+</bench:person_name>
+<bench:addresses>
+<bench:address>
+<bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+<bench:address_line_1>609 H St NE</bench:address_line_1>
+<bench:location_city_name>WASHINGTON</bench:location_city_name>
+<bench:location_state_code>DC</bench:location_state_code>
+<bench:postal_code>20502</bench:postal_code>
+</bench:address>
+</bench:addresses>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person>
+<bench:person_relationships>
+<bench:person_relationship>
+<bench:subject_individual>
+<bench:id>1000205</bench:id>
+</bench:subject_individual>
+<bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#child</bench:relationship_uri>
+<bench:object_individual>
+<bench:id>1000205</bench:id>
+</bench:object_individual>
+</bench:person_relationship>
+</bench:person_relationships>
+<bench:person_demographics>
+
+<bench:sex>urn:openhbx:terms:v1:gender#male</bench:sex>
+<bench:birth_date>20120101</bench:birth_date>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person_demographics>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:member>
+<bench:is_subscriber>true</bench:is_subscriber>
+<bench:benefit>
+<bench:premium_amount>00.00</bench:premium_amount>
+<bench:begin_date>20160901</bench:begin_date>
+</bench:benefit>
+</bench:enrollee></bench:enrollees>
+<bench:enrollment>
+<bench:plan>
+<bench:id>
+<bench:id>94506DC0390006-01</bench:id>
+</bench:id>
+<bench:name>KP DC Silver 2750/20%/HSA/Dental/Ped Dental</bench:name>
+<bench:active_year>2016</bench:active_year>
+<bench:is_dental_only>false</bench:is_dental_only>
+<bench:carrier>
+<bench:id>
+<bench:id>53e67210eb899a460300000d</bench:id>
+</bench:id>
+<bench:name>Kaiser</bench:name>
+<bench:is_active>true</bench:is_active>
+</bench:carrier>
+<bench:metal_level>urn:openhbx:terms:v1:plan_metal_level#silver</bench:metal_level>
+<bench:coverage_type>urn:openhbx:terms:v1:qhp_benefit_coverage#health</bench:coverage_type>
+<bench:ehb_percent xsi:type="xsd:string">98.34</bench:ehb_percent>
+</bench:plan>
+</bench:enrollment>
+</coverage_quote_request>
+
+
+#############Request##########
+
+<coverage_quote_request xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bench="http://openhbx.org/api/terms/1.0" xmlns="http://openhbx.org/api/terms/1.0">
+<bench:enrollees><bench:enrollee>
+<bench:member>
+<bench:id>
+<bench:id>1000202</bench:id>
+</bench:id>
+<bench:person>
+<bench:id>
+<bench:id>1000202</bench:id>
+</bench:id>
+<bench:person_name>
+<bench:person_surname>smith</bench:person_surname>
+<bench:person_given_name>husband</bench:person_given_name>
+</bench:person_name>
+<bench:addresses>
+<bench:address>
+<bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+<bench:address_line_1>609 H St NE</bench:address_line_1>
+<bench:location_city_name>WASHINGTON</bench:location_city_name>
+<bench:location_state_code>DC</bench:location_state_code>
+<bench:postal_code>20059</bench:postal_code>
+</bench:address>
+</bench:addresses>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person>
+<bench:person_relationships>
+<bench:person_relationship>
+<bench:subject_individual>
+<bench:id>1000202</bench:id>
+</bench:subject_individual>
+<bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#self</bench:relationship_uri>
+<bench:object_individual>
+<bench:id>1000202</bench:id>
+</bench:object_individual>
+</bench:person_relationship>
+</bench:person_relationships>
+<bench:person_demographics>
+
+<bench:sex>urn:openhbx:terms:v1:gender#male</bench:sex>
+<bench:birth_date>19760101</bench:birth_date>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person_demographics>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:member>
+<bench:is_subscriber>true</bench:is_subscriber>
+<bench:benefit>
+<bench:premium_amount>00.00</bench:premium_amount>
+<bench:begin_date>20160901</bench:begin_date>
+</bench:benefit>
+</bench:enrollee><bench:enrollee>
+<bench:member>
+<bench:id>
+<bench:id>1000201</bench:id>
+</bench:id>
+<bench:person>
+<bench:id>
+<bench:id>1000201</bench:id>
+</bench:id>
+<bench:person_name>
+<bench:person_surname>smith</bench:person_surname>
+<bench:person_given_name>parentone</bench:person_given_name>
+</bench:person_name>
+<bench:addresses>
+<bench:address>
+<bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+<bench:address_line_1>609 H St NE</bench:address_line_1>
+<bench:location_city_name>WASHINGTON</bench:location_city_name>
+<bench:location_state_code>DC</bench:location_state_code>
+<bench:postal_code>20012</bench:postal_code>
+</bench:address>
+</bench:addresses>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person>
+<bench:person_relationships>
+<bench:person_relationship>
+<bench:subject_individual>
+<bench:id>1000201</bench:id>
+</bench:subject_individual>
+<bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#parent</bench:relationship_uri>
+<bench:object_individual>
+<bench:id>1000201</bench:id>
+</bench:object_individual>
+</bench:person_relationship>
+</bench:person_relationships>
+<bench:person_demographics>
+
+<bench:sex>urn:openhbx:terms:v1:gender#male</bench:sex>
+<bench:birth_date>19500101</bench:birth_date>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person_demographics>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:member>
+<bench:is_subscriber>true</bench:is_subscriber>
+<bench:benefit>
+<bench:premium_amount>00.00</bench:premium_amount>
+<bench:begin_date>20160901</bench:begin_date>
+</bench:benefit>
+</bench:enrollee><bench:enrollee>
+<bench:member>
+<bench:id>
+<bench:id>1000207</bench:id>
+</bench:id>
+<bench:person>
+<bench:id>
+<bench:id>1000207</bench:id>
+</bench:id>
+<bench:person_name>
+<bench:person_surname>smith</bench:person_surname>
+<bench:person_given_name>parenttwo</bench:person_given_name>
+</bench:person_name>
+<bench:addresses>
+<bench:address>
+<bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+<bench:address_line_1>609 H St NE</bench:address_line_1>
+<bench:location_city_name>WASHINGTON</bench:location_city_name>
+<bench:location_state_code>DC</bench:location_state_code>
+<bench:postal_code>20020</bench:postal_code>
+</bench:address>
+</bench:addresses>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person>
+<bench:person_relationships>
+<bench:person_relationship>
+<bench:subject_individual>
+<bench:id>1000207</bench:id>
+</bench:subject_individual>
+<bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#parent</bench:relationship_uri>
+<bench:object_individual>
+<bench:id>1000207</bench:id>
+</bench:object_individual>
+</bench:person_relationship>
+</bench:person_relationships>
+<bench:person_demographics>
+
+<bench:sex>urn:openhbx:terms:v1:gender#female</bench:sex>
+<bench:birth_date>19530101</bench:birth_date>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person_demographics>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:member>
+<bench:is_subscriber>true</bench:is_subscriber>
+<bench:benefit>
+<bench:premium_amount>00.00</bench:premium_amount>
+<bench:begin_date>20160901</bench:begin_date>
+</bench:benefit>
+</bench:enrollee><bench:enrollee>
+<bench:member>
+<bench:id>
+<bench:id>1000200</bench:id>
+</bench:id>
+<bench:person>
+<bench:id>
+<bench:id>1000200</bench:id>
+</bench:id>
+<bench:person_name>
+<bench:person_surname>smith</bench:person_surname>
+<bench:person_given_name>sibtwo</bench:person_given_name>
+</bench:person_name>
+<bench:addresses>
+<bench:address>
+<bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+<bench:address_line_1>609 H St NE</bench:address_line_1>
+<bench:location_city_name>WASHINGTON</bench:location_city_name>
+<bench:location_state_code>DC</bench:location_state_code>
+<bench:postal_code>20002</bench:postal_code>
+</bench:address>
+</bench:addresses>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person>
+<bench:person_relationships>
+<bench:person_relationship>
+<bench:subject_individual>
+<bench:id>1000200</bench:id>
+</bench:subject_individual>
+<bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#sibling</bench:relationship_uri>
+<bench:object_individual>
+<bench:id>1000200</bench:id>
+</bench:object_individual>
+</bench:person_relationship>
+</bench:person_relationships>
+<bench:person_demographics>
+<bench:sex>urn:openhbx:terms:v1:gender#female</bench:sex>
+<bench:birth_date>19840101</bench:birth_date>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person_demographics>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:member>
+<bench:is_subscriber>true</bench:is_subscriber>
+<bench:benefit>
+<bench:premium_amount>00.00</bench:premium_amount>
+<bench:begin_date>20160901</bench:begin_date>
+</bench:benefit>
+</bench:enrollee><bench:enrollee>
+<bench:member>
+<bench:id>
+<bench:id>1000204</bench:id>
+</bench:id>
+<bench:person>
+<bench:id>
+<bench:id>1000204</bench:id>
+</bench:id>
+<bench:person_name>
+<bench:person_surname>smith</bench:person_surname>
+<bench:person_given_name>sibone</bench:person_given_name>
+</bench:person_name>
+<bench:addresses>
+<bench:address>
+<bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+<bench:address_line_1>609 H St NE</bench:address_line_1>
+<bench:location_city_name>WASHINGTON</bench:location_city_name>
+<bench:location_state_code>DC</bench:location_state_code>
+<bench:postal_code>20501</bench:postal_code>
+</bench:address>
+</bench:addresses>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person>
+<bench:person_relationships>
+<bench:person_relationship>
+<bench:subject_individual>
+<bench:id>1000204</bench:id>
+</bench:subject_individual>
+<bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#sibling</bench:relationship_uri>
+<bench:object_individual>
+<bench:id>1000204</bench:id>
+</bench:object_individual>
+</bench:person_relationship>
+</bench:person_relationships>
+<bench:person_demographics>
+
+<bench:sex>urn:openhbx:terms:v1:gender#male</bench:sex>
+<bench:birth_date>19960101</bench:birth_date>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person_demographics>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:member>
+<bench:is_subscriber>true</bench:is_subscriber>
+<bench:benefit>
+<bench:premium_amount>00.00</bench:premium_amount>
+<bench:begin_date>20160901</bench:begin_date>
+</bench:benefit>
+</bench:enrollee><bench:enrollee>
+<bench:member>
+<bench:id>
+<bench:id>1000203</bench:id>
+</bench:id>
+<bench:person>
+<bench:id>
+<bench:id>1000203</bench:id>
+</bench:id>
+<bench:person_name>
+<bench:person_surname>smith</bench:person_surname>
+<bench:person_given_name>childtwo</bench:person_given_name>
+</bench:person_name>
+<bench:addresses>
+<bench:address>
+<bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+<bench:address_line_1>609 H St NE</bench:address_line_1>
+<bench:location_city_name>WASHINGTON</bench:location_city_name>
+<bench:location_state_code>DC</bench:location_state_code>
+<bench:postal_code>20026</bench:postal_code>
+</bench:address>
+</bench:addresses>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person>
+<bench:person_relationships>
+<bench:person_relationship>
+<bench:subject_individual>
+<bench:id>1000203</bench:id>
+</bench:subject_individual>
+<bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#child</bench:relationship_uri>
+<bench:object_individual>
+<bench:id>1000203</bench:id>
+</bench:object_individual>
+</bench:person_relationship>
+</bench:person_relationships>
+<bench:person_demographics>
+
+<bench:sex>urn:openhbx:terms:v1:gender#female</bench:sex>
+<bench:birth_date>19970101</bench:birth_date>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person_demographics>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:member>
+<bench:is_subscriber>true</bench:is_subscriber>
+<bench:benefit>
+<bench:premium_amount>00.00</bench:premium_amount>
+<bench:begin_date>20160901</bench:begin_date>
+</bench:benefit>
+</bench:enrollee><bench:enrollee>
+<bench:member>
+<bench:id>
+<bench:id>1000206</bench:id>
+</bench:id>
+<bench:person>
+<bench:id>
+<bench:id>1000206</bench:id>
+</bench:id>
+<bench:person_name>
+<bench:person_surname>smith</bench:person_surname>
+<bench:person_given_name>wife</bench:person_given_name>
+</bench:person_name>
+<bench:addresses>
+<bench:address>
+<bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+<bench:address_line_1>609 H St NE</bench:address_line_1>
+<bench:location_city_name>WASHINGTON</bench:location_city_name>
+<bench:location_state_code>DC</bench:location_state_code>
+<bench:postal_code>20016</bench:postal_code>
+</bench:address>
+</bench:addresses>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person>
+<bench:person_relationships>
+<bench:person_relationship>
+<bench:subject_individual>
+<bench:id>1000206</bench:id>
+</bench:subject_individual>
+<bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#spouse</bench:relationship_uri>
+<bench:object_individual>
+<bench:id>1000206</bench:id>
+</bench:object_individual>
+</bench:person_relationship>
+</bench:person_relationships>
+<bench:person_demographics>
+
+<bench:sex>urn:openhbx:terms:v1:gender#female</bench:sex>
+<bench:birth_date>19780101</bench:birth_date>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person_demographics>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:member>
+<bench:is_subscriber>true</bench:is_subscriber>
+<bench:benefit>
+<bench:premium_amount>00.00</bench:premium_amount>
+<bench:begin_date>20160901</bench:begin_date>
+</bench:benefit>
+</bench:enrollee><bench:enrollee>
+<bench:member>
+<bench:id>
+<bench:id>1000205</bench:id>
+</bench:id>
+<bench:person>
+<bench:id>
+<bench:id>1000205</bench:id>
+</bench:id>
+<bench:person_name>
+<bench:person_surname>smith</bench:person_surname>
+<bench:person_given_name>childone</bench:person_given_name>
+</bench:person_name>
+<bench:addresses>
+<bench:address>
+<bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+<bench:address_line_1>609 H St NE</bench:address_line_1>
+<bench:location_city_name>WASHINGTON</bench:location_city_name>
+<bench:location_state_code>DC</bench:location_state_code>
+<bench:postal_code>20502</bench:postal_code>
+</bench:address>
+</bench:addresses>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person>
+<bench:person_relationships>
+<bench:person_relationship>
+<bench:subject_individual>
+<bench:id>1000205</bench:id>
+</bench:subject_individual>
+<bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#child</bench:relationship_uri>
+<bench:object_individual>
+<bench:id>1000205</bench:id>
+</bench:object_individual>
+</bench:person_relationship>
+</bench:person_relationships>
+<bench:person_demographics>
+
+<bench:sex>urn:openhbx:terms:v1:gender#male</bench:sex>
+<bench:birth_date>20120101</bench:birth_date>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:person_demographics>
+<bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+</bench:member>
+<bench:is_subscriber>true</bench:is_subscriber>
+<bench:benefit>
+<bench:premium_amount>00.00</bench:premium_amount>
+<bench:begin_date>20160901</bench:begin_date>
+</bench:benefit>
+</bench:enrollee></bench:enrollees>
+<bench:enrollment>
+<bench:plan>
+<bench:id>
+<bench:id>94506DC0390006-01</bench:id>
+</bench:id>
+<bench:name>KP DC Silver 2750/20%/HSA/Dental/Ped Dental</bench:name>
+<bench:active_year>2016</bench:active_year>
+<bench:is_dental_only>false</bench:is_dental_only>
+<bench:carrier>
+<bench:id>
+<bench:id>53e67210eb899a460300000d</bench:id>
+</bench:id>
+<bench:name>Kaiser</bench:name>
+<bench:is_active>true</bench:is_active>
+</bench:carrier>
+<bench:metal_level>urn:openhbx:terms:v1:plan_metal_level#silver</bench:metal_level>
+<bench:coverage_type>urn:openhbx:terms:v1:qhp_benefit_coverage#health</bench:coverage_type>
+<bench:ehb_percent xsi:type="xsd:string">98.34</bench:ehb_percent>
+</bench:plan>
+</bench:enrollment>
+</coverage_quote_request>
+
+
+##########Response#########
+
+<coverage_quote xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bench="http://openhbx.org/api/terms/1.0" xmlns="http://openhbx.org/api/terms/1.0">
+   <bench:enrollees>
+      <bench:enrollee>
+         <bench:member>
+            <bench:id>
+               <bench:id>1000202</bench:id>
+            </bench:id>
+            <bench:person>
+               <bench:id>
+                  <bench:id>1000202</bench:id>
+               </bench:id>
+               <bench:person_name>
+                  <bench:person_surname>smith</bench:person_surname>
+                  <bench:person_given_name>husband</bench:person_given_name>
+               </bench:person_name>
+               <bench:addresses>
+                  <bench:address>
+                     <bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+                     <bench:address_line_1>609 H St NE</bench:address_line_1>
+                     <bench:location_city_name>WASHINGTON</bench:location_city_name>
+                     <bench:location_state_code>DC</bench:location_state_code>
+                     <bench:postal_code>20059</bench:postal_code>
+                  </bench:address>
+               </bench:addresses>
+               <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+            </bench:person>
+            <bench:person_relationships>
+               <bench:person_relationship>
+                  <bench:subject_individual>
+                     <bench:id>1000202</bench:id>
+                  </bench:subject_individual>
+                  <bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#self</bench:relationship_uri>
+                  <bench:object_individual>
+                     <bench:id>1000202</bench:id>
+                  </bench:object_individual>
+               </bench:person_relationship>
+            </bench:person_relationships>
+            <bench:person_demographics>
+               <bench:sex>urn:openhbx:terms:v1:gender#male</bench:sex>
+               <bench:birth_date>19760101</bench:birth_date>
+               <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+            </bench:person_demographics>
+            <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+         </bench:member>
+         <bench:is_subscriber>true</bench:is_subscriber>
+         <bench:benefit>
+            <bench:premium_amount>243.3</bench:premium_amount>
+            <bench:begin_date>20160901</bench:begin_date>
+         </bench:benefit>
+      </bench:enrollee>
+      <bench:enrollee>
+         <bench:member>
+            <bench:id>
+               <bench:id>1000201</bench:id>
+            </bench:id>
+            <bench:person>
+               <bench:id>
+                  <bench:id>1000201</bench:id>
+               </bench:id>
+               <bench:person_name>
+                  <bench:person_surname>smith</bench:person_surname>
+                  <bench:person_given_name>parentone</bench:person_given_name>
+               </bench:person_name>
+               <bench:addresses>
+                  <bench:address>
+                     <bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+                     <bench:address_line_1>609 H St NE</bench:address_line_1>
+                     <bench:location_city_name>WASHINGTON</bench:location_city_name>
+                     <bench:location_state_code>DC</bench:location_state_code>
+                     <bench:postal_code>20012</bench:postal_code>
+                  </bench:address>
+               </bench:addresses>
+               <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+            </bench:person>
+            <bench:person_relationships>
+               <bench:person_relationship>
+                  <bench:subject_individual>
+                     <bench:id>1000201</bench:id>
+                  </bench:subject_individual>
+                  <bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#parent</bench:relationship_uri>
+                  <bench:object_individual>
+                     <bench:id>1000201</bench:id>
+                  </bench:object_individual>
+               </bench:person_relationship>
+            </bench:person_relationships>
+            <bench:person_demographics>
+               <bench:sex>urn:openhbx:terms:v1:gender#male</bench:sex>
+               <bench:birth_date>19500101</bench:birth_date>
+               <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+            </bench:person_demographics>
+            <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+         </bench:member>
+         <bench:is_subscriber>true</bench:is_subscriber>
+         <bench:benefit>
+            <bench:premium_amount>544.25</bench:premium_amount>
+            <bench:begin_date>20160901</bench:begin_date>
+         </bench:benefit>
+      </bench:enrollee>
+      <bench:enrollee>
+         <bench:member>
+            <bench:id>
+               <bench:id>1000207</bench:id>
+            </bench:id>
+            <bench:person>
+               <bench:id>
+                  <bench:id>1000207</bench:id>
+               </bench:id>
+               <bench:person_name>
+                  <bench:person_surname>smith</bench:person_surname>
+                  <bench:person_given_name>parenttwo</bench:person_given_name>
+               </bench:person_name>
+               <bench:addresses>
+                  <bench:address>
+                     <bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+                     <bench:address_line_1>609 H St NE</bench:address_line_1>
+                     <bench:location_city_name>WASHINGTON</bench:location_city_name>
+                     <bench:location_state_code>DC</bench:location_state_code>
+                     <bench:postal_code>20020</bench:postal_code>
+                  </bench:address>
+               </bench:addresses>
+               <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+            </bench:person>
+            <bench:person_relationships>
+               <bench:person_relationship>
+                  <bench:subject_individual>
+                     <bench:id>1000207</bench:id>
+                  </bench:subject_individual>
+                  <bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#parent</bench:relationship_uri>
+                  <bench:object_individual>
+                     <bench:id>1000207</bench:id>
+                  </bench:object_individual>
+               </bench:person_relationship>
+            </bench:person_relationships>
+            <bench:person_demographics>
+               <bench:sex>urn:openhbx:terms:v1:gender#female</bench:sex>
+               <bench:birth_date>19530101</bench:birth_date>
+               <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+            </bench:person_demographics>
+            <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+         </bench:member>
+         <bench:is_subscriber>true</bench:is_subscriber>
+         <bench:benefit>
+            <bench:premium_amount>544.25</bench:premium_amount>
+            <bench:begin_date>20160901</bench:begin_date>
+         </bench:benefit>
+      </bench:enrollee>
+      <bench:enrollee>
+         <bench:member>
+            <bench:id>
+               <bench:id>1000200</bench:id>
+            </bench:id>
+            <bench:person>
+               <bench:id>
+                  <bench:id>1000200</bench:id>
+               </bench:id>
+               <bench:person_name>
+                  <bench:person_surname>smith</bench:person_surname>
+                  <bench:person_given_name>sibtwo</bench:person_given_name>
+               </bench:person_name>
+               <bench:addresses>
+                  <bench:address>
+                     <bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+                     <bench:address_line_1>609 H St NE</bench:address_line_1>
+                     <bench:location_city_name>WASHINGTON</bench:location_city_name>
+                     <bench:location_state_code>DC</bench:location_state_code>
+                     <bench:postal_code>20002</bench:postal_code>
+                  </bench:address>
+               </bench:addresses>
+               <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+            </bench:person>
+            <bench:person_relationships>
+               <bench:person_relationship>
+                  <bench:subject_individual>
+                     <bench:id>1000200</bench:id>
+                  </bench:subject_individual>
+                  <bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#sibling</bench:relationship_uri>
+                  <bench:object_individual>
+                     <bench:id>1000200</bench:id>
+                  </bench:object_individual>
+               </bench:person_relationship>
+            </bench:person_relationships>
+            <bench:person_demographics>
+               <bench:sex>urn:openhbx:terms:v1:gender#female</bench:sex>
+               <bench:birth_date>19840101</bench:birth_date>
+               <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+            </bench:person_demographics>
+            <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+         </bench:member>
+         <bench:is_subscriber>true</bench:is_subscriber>
+         <bench:benefit>
+            <bench:premium_amount>203.87</bench:premium_amount>
+            <bench:begin_date>20160901</bench:begin_date>
+         </bench:benefit>
+      </bench:enrollee>
+      <bench:enrollee>
+         <bench:member>
+            <bench:id>
+               <bench:id>1000204</bench:id>
+            </bench:id>
+            <bench:person>
+               <bench:id>
+                  <bench:id>1000204</bench:id>
+               </bench:id>
+               <bench:person_name>
+                  <bench:person_surname>smith</bench:person_surname>
+                  <bench:person_given_name>sibone</bench:person_given_name>
+               </bench:person_name>
+               <bench:addresses>
+                  <bench:address>
+                     <bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+                     <bench:address_line_1>609 H St NE</bench:address_line_1>
+                     <bench:location_city_name>WASHINGTON</bench:location_city_name>
+                     <bench:location_state_code>DC</bench:location_state_code>
+                     <bench:postal_code>20501</bench:postal_code>
+                  </bench:address>
+               </bench:addresses>
+               <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+            </bench:person>
+            <bench:person_relationships>
+               <bench:person_relationship>
+                  <bench:subject_individual>
+                     <bench:id>1000204</bench:id>
+                  </bench:subject_individual>
+                  <bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#sibling</bench:relationship_uri>
+                  <bench:object_individual>
+                     <bench:id>1000204</bench:id>
+                  </bench:object_individual>
+               </bench:person_relationship>
+            </bench:person_relationships>
+            <bench:person_demographics>
+               <bench:sex>urn:openhbx:terms:v1:gender#male</bench:sex>
+               <bench:birth_date>19960101</bench:birth_date>
+               <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+            </bench:person_demographics>
+            <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+         </bench:member>
+         <bench:is_subscriber>true</bench:is_subscriber>
+         <bench:benefit>
+            <bench:premium_amount>163.2</bench:premium_amount>
+            <bench:begin_date>20160901</bench:begin_date>
+         </bench:benefit>
+      </bench:enrollee>
+      <bench:enrollee>
+         <bench:member>
+            <bench:id>
+               <bench:id>1000203</bench:id>
+            </bench:id>
+            <bench:person>
+               <bench:id>
+                  <bench:id>1000203</bench:id>
+               </bench:id>
+               <bench:person_name>
+                  <bench:person_surname>smith</bench:person_surname>
+                  <bench:person_given_name>childtwo</bench:person_given_name>
+               </bench:person_name>
+               <bench:addresses>
+                  <bench:address>
+                     <bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+                     <bench:address_line_1>609 H St NE</bench:address_line_1>
+                     <bench:location_city_name>WASHINGTON</bench:location_city_name>
+                     <bench:location_state_code>DC</bench:location_state_code>
+                     <bench:postal_code>20026</bench:postal_code>
+                  </bench:address>
+               </bench:addresses>
+               <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+            </bench:person>
+            <bench:person_relationships>
+               <bench:person_relationship>
+                  <bench:subject_individual>
+                     <bench:id>1000203</bench:id>
+                  </bench:subject_individual>
+                  <bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#child</bench:relationship_uri>
+                  <bench:object_individual>
+                     <bench:id>1000203</bench:id>
+                  </bench:object_individual>
+               </bench:person_relationship>
+            </bench:person_relationships>
+            <bench:person_demographics>
+               <bench:sex>urn:openhbx:terms:v1:gender#female</bench:sex>
+               <bench:birth_date>19970101</bench:birth_date>
+               <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+            </bench:person_demographics>
+            <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+         </bench:member>
+         <bench:is_subscriber>true</bench:is_subscriber>
+         <bench:benefit>
+            <bench:premium_amount>163.2</bench:premium_amount>
+            <bench:begin_date>20160901</bench:begin_date>
+         </bench:benefit>
+      </bench:enrollee>
+      <bench:enrollee>
+         <bench:member>
+            <bench:id>
+               <bench:id>1000206</bench:id>
+            </bench:id>
+            <bench:person>
+               <bench:id>
+                  <bench:id>1000206</bench:id>
+               </bench:id>
+               <bench:person_name>
+                  <bench:person_surname>smith</bench:person_surname>
+                  <bench:person_given_name>wife</bench:person_given_name>
+               </bench:person_name>
+               <bench:addresses>
+                  <bench:address>
+                     <bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+                     <bench:address_line_1>609 H St NE</bench:address_line_1>
+                     <bench:location_city_name>WASHINGTON</bench:location_city_name>
+                     <bench:location_state_code>DC</bench:location_state_code>
+                     <bench:postal_code>20016</bench:postal_code>
+                  </bench:address>
+               </bench:addresses>
+               <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+            </bench:person>
+            <bench:person_relationships>
+               <bench:person_relationship>
+                  <bench:subject_individual>
+                     <bench:id>1000206</bench:id>
+                  </bench:subject_individual>
+                  <bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#spouse</bench:relationship_uri>
+                  <bench:object_individual>
+                     <bench:id>1000206</bench:id>
+                  </bench:object_individual>
+               </bench:person_relationship>
+            </bench:person_relationships>
+            <bench:person_demographics>
+               <bench:sex>urn:openhbx:terms:v1:gender#female</bench:sex>
+               <bench:birth_date>19780101</bench:birth_date>
+               <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+            </bench:person_demographics>
+            <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+         </bench:member>
+         <bench:is_subscriber>true</bench:is_subscriber>
+         <bench:benefit>
+            <bench:premium_amount>231.32</bench:premium_amount>
+            <bench:begin_date>20160901</bench:begin_date>
+         </bench:benefit>
+      </bench:enrollee>
+      <bench:enrollee>
+         <bench:member>
+            <bench:id>
+               <bench:id>1000205</bench:id>
+            </bench:id>
+            <bench:person>
+               <bench:id>
+                  <bench:id>1000205</bench:id>
+               </bench:id>
+               <bench:person_name>
+                  <bench:person_surname>smith</bench:person_surname>
+                  <bench:person_given_name>childone</bench:person_given_name>
+               </bench:person_name>
+               <bench:addresses>
+                  <bench:address>
+                     <bench:type>urn:openhbx:terms:v1:address_type#home</bench:type>
+                     <bench:address_line_1>609 H St NE</bench:address_line_1>
+                     <bench:location_city_name>WASHINGTON</bench:location_city_name>
+                     <bench:location_state_code>DC</bench:location_state_code>
+                     <bench:postal_code>20502</bench:postal_code>
+                  </bench:address>
+               </bench:addresses>
+               <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+            </bench:person>
+            <bench:person_relationships>
+               <bench:person_relationship>
+                  <bench:subject_individual>
+                     <bench:id>1000205</bench:id>
+                  </bench:subject_individual>
+                  <bench:relationship_uri>urn:openhbx:terms:v1:individual_relationship#child</bench:relationship_uri>
+                  <bench:object_individual>
+                     <bench:id>1000205</bench:id>
+                  </bench:object_individual>
+               </bench:person_relationship>
+            </bench:person_relationships>
+            <bench:person_demographics>
+               <bench:sex>urn:openhbx:terms:v1:gender#male</bench:sex>
+               <bench:birth_date>20120101</bench:birth_date>
+               <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+            </bench:person_demographics>
+            <bench:created_at>2016-08-16T12:26:02.757-04:00</bench:created_at>
+         </bench:member>
+         <bench:is_subscriber>true</bench:is_subscriber>
+         <bench:benefit>
+            <bench:premium_amount>163.2</bench:premium_amount>
+            <bench:begin_date>20160901</bench:begin_date>
+         </bench:benefit>
+      </bench:enrollee>
+   </bench:enrollees>
+   <bench:enrollment>
+      <bench:plan>
+         <bench:id>
+            <bench:id>94506DC0390006-01</bench:id>
+         </bench:id>
+         <bench:name>KP DC Silver 2750/20%/HSA/Dental/Ped Dental</bench:name>
+         <bench:active_year>2016</bench:active_year>
+         <bench:is_dental_only>false</bench:is_dental_only>
+         <bench:carrier>
+            <bench:id>
+               <bench:id>53e67210eb899a460300000d</bench:id>
+            </bench:id>
+            <bench:name>Kaiser</bench:name>
+            <bench:is_active>true</bench:is_active>
+         </bench:carrier>
+         <bench:metal_level>urn:openhbx:terms:v1:plan_metal_level#silver</bench:metal_level>
+         <bench:coverage_type>urn:openhbx:terms:v1:qhp_benefit_coverage#health</bench:coverage_type>
+         <bench:ehb_percent xsi:type="xsd:string">98.34</bench:ehb_percent>
+      </bench:plan>
+      <premium_total_amount>2256.59</premium_total_amount>
+   </bench:enrollment>
+</coverage_quote>
