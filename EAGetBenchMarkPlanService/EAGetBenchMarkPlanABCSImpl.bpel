@@ -1,0 +1,467 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Mon Sep 07 12:18:16 EDT 2015
+  Author:  prasanthmanda
+  Type: BPEL 1.1 Process
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="EAGetBenchMarkPlanABCSImpl"
+               targetNamespace="http://xmlns.oracle.com/NEW_APP/EAGetBenchMarkPlanService/EAGetBenchMarkPlanABCSImpl"
+               xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+               xmlns:client="http://xmlns.oracle.com/NEW_APP/EAGetBenchMarkPlanService/EAGetBenchMarkPlanABCSImpl"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:ns1="http://xmlns.oracle.com/enrolapp/getbenchmark/service/wsdl/v1"
+         xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns2="http://xmlns.oracle.com/DCAS_DEV5/ErrorHandlingDCASCmpService/ErrorHandlingDCASABCSImpl"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns3="http://xmlns.dhs.dc.gov/DCAS/ESB/ErrorHandlingService/V1"
+         xmlns:ns4="http://xmlns.oracle.com/pcbpel/adapter/http/EnrollApp/EAGetBenchMarkPlanService/GetSLCP"
+         xmlns:ns5="http://xmlns.oracle.com/pcbpel/adapter/http/EnrollApp/EAGetBenchMarkPlanService/GetEHBPremium"
+         xmlns:ns6="http://openhbx.org/api/terms/1.0">
+
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="eagetbenchmarkplanabcsimpl_client" partnerLinkType="client:EAGetBenchMarkPlanABCSImpl" myRole="EAGetBenchMarkPlanABCSImplProvider"/>
+    <partnerLink name="ErrorHandling"
+                 partnerLinkType="ns2:ErrorHandlingDCASABCSImpl"
+                 partnerRole="ErrorHandlingDCASABCSImplProvider"/>
+    <partnerLink name="GetSLCP" partnerLinkType="ns4:Request_Response_plt"
+                 partnerRole="Request-Response_role"/>
+    <partnerLink name="GetEHBPremium" partnerLinkType="ns5:Request_Response_plt"
+                 partnerRole="Request-Response_role"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:EAGetBenchMarkPlanABCSImplRequestMessage"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="client:EAGetBenchMarkPlanABCSImplResponseMessage"/>
+    <variable name="GetBechMarkCoverageQuote_InputVariable"
+              messageType="ns1:BenchMarkCoverageQuoteReqMsg"/>
+    <variable name="GetBechMarkCoverageQuote_OutputVariable"
+              messageType="ns1:BenchMarkCoverageQuoteResMsg"/>
+    <variable name="GetBechMarkPlan_InputVariable"
+              messageType="ns1:BenchMarkPlanReqMsg"/>
+    <variable name="GetBechMarkPlan_OutputVariable"
+              messageType="ns1:BenchMarkPlanResMsg"/>
+    <variable messageType="bpelx:RuntimeFaultMessage" name="FaultVar"/>
+    <variable name="Invoke_ErrorHandling_InputVariable"
+              messageType="ns2:ErrorHandlingDCASABCSImplRequestMessage"/>
+    <variable name="Invoke_GetBenchMarkPlan_Request"
+              messageType="ns4:benchmark_plan_request_msg_in"/>
+    <variable name="Invoke_GetBenchMarkPlan_Response"
+              messageType="ns4:benchmark_plan_msg_out"/>
+    <variable name="Invoke_GetBenchMarkCoverageQuote_Request"
+              messageType="ns5:coverage_quote_request_msg_in"/>
+    <variable name="Invoke_GetBenchMarkCoverageQuote_Response"
+              messageType="ns5:coverage_quote_msg_out"/>
+  </variables>
+  <faultHandlers>
+    <catch faultName="bpelx:remoteFault">
+      <sequence name="RemoteFault">
+         <assign name="Assign_Remote">
+          <copy>
+            <from expression="ora:generateGUID()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:GUID"/>
+          </copy>
+          <copy>
+            <from expression="ora:getCurrentDateTime()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Footer/ns3:TimeStamp"/>
+          </copy>
+          <copy>
+            <from expression="'1'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:MessageBody/ns3:ErrorSeverity"/>
+          </copy>
+          <copy>
+            <from expression="'ESB'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:SenderName"/>
+          </copy>
+          <copy>
+            <from expression="ora:getCompositeName()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:ServiceName"/>
+          </copy>
+          <copy>
+            <from expression="ora:getCompositeName()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:CompositeName"/>
+          </copy>
+          <copy>
+            <from expression="'JMY_DEV'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:EnvironmentName"/>
+          </copy>
+          <copy>
+            <from expression="ora:getComponentName()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:Component"/>
+          </copy>
+          <copy>
+            <from expression="'GetBenchMark'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:TargetID"/>
+          </copy>
+          <copy>
+            <from expression="'EnrollApp'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:SourceID"/>
+          </copy>
+          <copy>
+            <from variable="FaultVar" part="code"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:MessageBody/ns3:ErrorCode"/>
+          </copy>
+          <copy>
+            <from expression="'ESB_01'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:SenderID"/>
+          </copy>
+          <copy>
+            <from expression="ora:getCompositeInstanceId()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:InstanceID"/>
+          </copy>
+          <copy>
+            <from variable="FaultVar" part="summary"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:MessageBody/ns3:ErrorDesc"/>
+          </copy>
+          <copy>
+            <from variable="FaultVar" part="detail"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:MessageBody/ns3:ErrorMsg"/>
+          </copy>
+          <copy>
+            <from expression="'REMOTE_01'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:MessageBody/ns3:ErrorType"/>
+          </copy>
+        </assign>
+        <invoke name="Invoke_ErrorHandling"
+                partnerLink="ErrorHandling"
+                portType="ns2:ErrorHandlingDCASABCSImpl" operation="process"
+                inputVariable="Invoke_ErrorHandling_InputVariable"
+                bpelx:invokeAsDetail="no"/>
+        <throw name="Throw_RemoteFault" faultName="bpelx:remoteFault"
+               faultVariable="FaultVar"/>
+         </sequence>
+         </catch>
+         <catch faultName="bpelx:bindingFault">
+      <sequence name="BindingFault">
+        <assign name="Assign_Binding">
+          <copy>
+            <from expression="ora:generateGUID()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:GUID"/>
+          </copy>
+          <copy>
+            <from expression="ora:getCurrentDateTime()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Footer/ns3:TimeStamp"/>
+          </copy>
+          <copy>
+            <from expression="'1'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:MessageBody/ns3:ErrorSeverity"/>
+          </copy>
+          <copy>
+            <from expression="'ESB'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:SenderName"/>
+          </copy>
+          <copy>
+            <from expression="ora:getCompositeName()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:ServiceName"/>
+          </copy>
+          <copy>
+            <from expression="ora:getCompositeName()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:CompositeName"/>
+          </copy>
+          <copy>
+            <from expression="'JMY_DEV'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:EnvironmentName"/>
+          </copy>
+          <copy>
+            <from expression="ora:getComponentName()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:Component"/>
+          </copy>
+          <copy>
+            <from expression="'GetBenchMark'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:TargetID"/>
+          </copy>
+          <copy>
+            <from expression="'EnrollApp'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:SourceID"/>
+          </copy>
+          <copy>
+            <from variable="FaultVar" part="code"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:MessageBody/ns3:ErrorCode"/>
+          </copy>
+          <copy>
+            <from expression="'ESB_01'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:SenderID"/>
+          </copy>
+          <copy>
+            <from expression="ora:getCompositeInstanceId()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:InstanceID"/>
+          </copy>
+          <copy>
+            <from variable="FaultVar" part="summary"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:MessageBody/ns3:ErrorDesc"/>
+          </copy>
+          <copy>
+            <from variable="FaultVar" part="detail"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:MessageBody/ns3:ErrorMsg"/>
+          </copy>
+          <copy>
+            <from expression="'BINDING_01'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:MessageBody/ns3:ErrorType"/>
+          </copy>
+        </assign>
+         <invoke name="Invoke_ErrorHandling"
+                partnerLink="ErrorHandling"
+                portType="ns2:ErrorHandlingDCASABCSImpl" operation="process"
+                inputVariable="Invoke_ErrorHandling_InputVariable"
+                bpelx:invokeAsDetail="no"/>
+        <throw name="Throw_BindingFault" faultName="bpelx:bindingFault"
+               faultVariable="FaultVar"/>
+        </sequence>
+        </catch>
+        <catchAll>
+      <sequence name="GenericFault">
+        <assign name="AssignFault">
+         <copy>
+            <from expression="ora:generateGUID()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:GUID"/>
+          </copy>
+          <copy>
+            <from expression="ora:getCurrentDateTime()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Footer/ns3:TimeStamp"/>
+          </copy>
+          <copy>
+            <from expression="'1'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:MessageBody/ns3:ErrorSeverity"/>
+          </copy>
+          <copy>
+            <from expression="'ESB'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:SenderName"/>
+          </copy>
+          <copy>
+            <from expression="ora:getCompositeName()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:ServiceName"/>
+          </copy>
+          <copy>
+            <from expression="ora:getCompositeName()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:CompositeName"/>
+          </copy>
+          <copy>
+            <from expression="'JMY_DEV'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:EnvironmentName"/>
+          </copy>
+          <copy>
+            <from expression="ora:getComponentName()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:Component"/>
+          </copy>
+          <copy>
+            <from expression="'GetBenchMark'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:TargetID"/>
+          </copy>
+          <copy>
+            <from expression="'EnrollApp'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:SourceID"/>
+          </copy>
+          <copy>
+            <from variable="FaultVar" part="code"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:MessageBody/ns3:ErrorCode"/>
+          </copy>
+          <copy>
+            <from expression="'ESB_01'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:SenderID"/>
+          </copy>
+          <copy>
+            <from expression="ora:getCompositeInstanceId()"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:Header/ns3:InstanceID"/>
+          </copy>
+          <copy>
+            <from variable="FaultVar" part="summary"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:MessageBody/ns3:ErrorDesc"/>
+          </copy>
+          <copy>
+            <from variable="FaultVar" part="detail"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:MessageBody/ns3:ErrorMsg"/>
+          </copy>
+          <copy>
+            <from expression="'GENERIC_01'"/>
+            <to variable="Invoke_ErrorHandling_InputVariable" part="payload"
+                query="/ns3:ErrorMessage/ns3:MessageBody/ns3:ErrorType"/>
+          </copy>
+        </assign>
+         <invoke name="Invoke_ErrorHandling"
+                partnerLink="ErrorHandling"
+                portType="ns2:ErrorHandlingDCASABCSImpl" operation="process"
+                inputVariable="Invoke_ErrorHandling_InputVariable"
+                bpelx:invokeAsDetail="no"/>
+        <throw name="Throw_RemoteFault" faultName="bpelx:remoteFault"
+               faultVariable="FaultVar"/>
+        </sequence>
+        </catchAll>
+         </faultHandlers>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in EAGetBenchMarkPlanABCSImpl.wsdl) -->
+    <receive name="receiveInput" partnerLink="eagetbenchmarkplanabcsimpl_client" portType="client:EAGetBenchMarkPlanABCSImpl" operation="process" variable="inputVariable" createInstance="yes"/>
+    <bpelx:validate name="Validate_InputReq" variables="inputVariable"/>
+    <assign name="CuramToGetBenchMarkPlan">
+      <bpelx:annotation>
+        <bpelx:pattern>transformation</bpelx:pattern>
+      </bpelx:annotation>
+      <copy>
+        <from expression="ora:doXSLTransformForDoc('xsl/CuramToGetBenchMarkPlan1.xsl', $inputVariable.payload)"/>
+        <to variable="GetBechMarkPlan_InputVariable" part="BenchMarkPlanReq"/>
+      </copy>
+    </assign>
+    <assign name="Assign_PlanRequest">
+      <copy>
+        <from variable="GetBechMarkPlan_InputVariable" part="BenchMarkPlanReq"
+              query="/ns6:benchmark_plan_request"/>
+        <to variable="Invoke_GetBenchMarkPlan_Request"
+            part="benchmark_plan_request" query="/ns6:benchmark_plan_request"/>
+      </copy>
+    </assign>
+    <invoke name="Invoke_GetBenchMarkPlan"
+            inputVariable="Invoke_GetBenchMarkPlan_Request"
+            outputVariable="Invoke_GetBenchMarkPlan_Response"
+            partnerLink="GetSLCP"
+            portType="ns4:Request_Response_ptt" operation="Request-Response"
+            bpelx:invokeAsDetail="no"/>
+    <assign name="Assign_PlanRes">
+      <copy>
+        <from variable="Invoke_GetBenchMarkPlan_Response" part="benchmark_plan"
+              query="/ns6:benchmark_plan"/>
+        <to variable="GetBechMarkPlan_OutputVariable" part="BenchMarkPlanRes"
+            query="/ns6:benchmark_plan"/>
+      </copy>
+      <copy>
+        <from variable="GetBechMarkCoverageQuote_InputVariable"
+              part="BenchMarkCoverageQuoteReq"
+              query="/ns6:coverage_quote_request"/>
+        <to variable="Invoke_GetBenchMarkCoverageQuote_Request"
+            part="coverage_quote_request" query="/ns6:coverage_quote_request"/>
+      </copy>
+    </assign>
+    <assign name="XformToSecondaryReq">
+      <bpelx:annotation>
+        <bpelx:pattern>transformation</bpelx:pattern>
+      </bpelx:annotation>
+      <copy>
+        <from expression="ora:doXSLTransformForDoc('xsl/XformToSecondaryReq.xsl', $GetBechMarkPlan_OutputVariable.BenchMarkPlanRes, 'inputVariable.payload', $inputVariable.payload)"/>
+        <to variable="GetBechMarkCoverageQuote_InputVariable"
+            part="BenchMarkCoverageQuoteReq"/>
+      </copy>
+    </assign><assign name="Assign_CoverageReq"
+                     xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/">
+      
+      
+   <copy>
+         <from variable="GetBechMarkCoverageQuote_InputVariable"
+               part="BenchMarkCoverageQuoteReq"
+               query="/ns6:coverage_quote_request"/>
+         <to variable="Invoke_GetBenchMarkCoverageQuote_Request"
+             part="coverage_quote_request" query="/ns6:coverage_quote_request"/>
+      </copy></assign><invoke name="Invoke_GetBenchMarkCoverageQuote"
+            inputVariable="Invoke_GetBenchMarkCoverageQuote_Request"
+            outputVariable="Invoke_GetBenchMarkCoverageQuote_Response"
+            partnerLink="GetEHBPremium"
+            portType="ns5:Request_Response_ptt"
+            operation="Request-Response" bpelx:invokeAsDetail="no"/>
+    <assign name="Assign_CoverageResponse">
+      <copy>
+        <from variable="Invoke_GetBenchMarkCoverageQuote_Response"
+              part="coverage_quote" query="/ns6:coverage_quote"/>
+        <to variable="GetBechMarkCoverageQuote_OutputVariable"
+            part="BenchMarkCoverageQuoteRes" query="/ns6:coverage_quote"/>
+      </copy>
+    </assign>
+    <assign name="XformEARespToCuram">
+      <bpelx:annotation>
+        <bpelx:pattern>transformation</bpelx:pattern>
+      </bpelx:annotation>
+      <copy>
+        <from expression="ora:doXSLTransformForDoc('xsl/XformEARespToCuram.xsl', $GetBechMarkCoverageQuote_OutputVariable.BenchMarkCoverageQuoteRes)"/>
+        <to variable="outputVariable" part="payload"/>
+      </copy>
+    </assign>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="eagetbenchmarkplanabcsimpl_client" portType="client:EAGetBenchMarkPlanABCSImpl" operation="process" variable="outputVariable"/>
+  </sequence>
+</process>

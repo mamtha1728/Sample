@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<composite name="EAGetBenchMarkPlanService" revision="2.0" label="2015-09-06_16-01-42_101" mode="active" state="on" xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy" xmlns:ui="http://xmlns.oracle.com/soa/designer/">
+   <import namespace="http://xmlns.oracle.com/NEW_APP/EAGetBenchMarkPlanService/EAGetBenchMarkPlanABCSImpl" location="EAGetBenchMarkPlanABCSImpl.wsdl" importType="wsdl"/>
+   <import namespace="http://xmlns.oracle.com/DCAS_DEV5/ErrorHandlingDCASCmpService/ErrorHandlingDCASABCSImpl" location="ErrorHandlingDCASABCSImpl.wsdl" importType="wsdl"/>
+   <import namespace="http://xmlns.oracle.com/pcbpel/adapter/http/EnrollApp/EAGetBenchMarkPlanService/GetSLCP" location="GetSLCP.wsdl" importType="wsdl"/>
+   <import namespace="http://xmlns.oracle.com/pcbpel/adapter/http/EnrollApp/EAGetBenchMarkPlanService/GetEHBPremium" location="GetEHBPremium.wsdl" importType="wsdl"/>
+   <import namespace="http://xmlns.oracle.com/enrolapp/getbenchmark/service/wsdl/v1" location="InvokeGetBenchMarkProxyWrapper.wsdl" importType="wsdl"/>
+   <import namespace="http://xmlns.oracle.com/enrolapp/getbenchmark/service/wsdl/v1" location="InvokeGetBenchMarkProxy.wsdl" importType="wsdl"/>
+   <service name="eagetbenchmarkplanabcsimpl_client_ep" ui:wsdlLocation="EAGetBenchMarkPlanABCSImpl.wsdl">
+      <interface.wsdl interface="http://xmlns.oracle.com/NEW_APP/EAGetBenchMarkPlanService/EAGetBenchMarkPlanABCSImpl#wsdl.interface(EAGetBenchMarkPlanABCSImpl)"/>
+      <binding.ws port="http://xmlns.oracle.com/NEW_APP/EAGetBenchMarkPlanService/EAGetBenchMarkPlanABCSImpl#wsdl.endpoint(eagetbenchmarkplanabcsimpl_client_ep/EAGetBenchMarkPlanABCSImpl_pt)"/>
+   </service>
+   <property name="productVersion" type="xs:string" many="false">11.1.1.7.0</property>
+   <component name="EAGetBenchMarkPlanABCSImpl" version="1.1">
+      <implementation.bpel src="EAGetBenchMarkPlanABCSImpl.bpel"/>
+      <property name="bpel.config.transaction" type="xs:string" many="false">required</property>
+      <property name="bpel.config.oneWayDeliveryPolicy" type="xs:string" many="false">async.persist</property>
+   </component>
+   <reference name="ErrorHandling" ui:wsdlLocation="ErrorHandlingDCASABCSImpl.wsdl">
+      <interface.wsdl interface="http://xmlns.oracle.com/DCAS_DEV5/ErrorHandlingDCASCmpService/ErrorHandlingDCASABCSImpl#wsdl.interface(ErrorHandlingDCASABCSImpl)"/>
+      <binding.ws port="http://xmlns.oracle.com/DCAS_DEV5/ErrorHandlingDCASCmpService/ErrorHandlingDCASABCSImpl#wsdl.endpoint(errorhandlingdcasabcsimpl_client_ep/ErrorHandlingDCASABCSImpl_pt)" location="https://esb-preprd.dchealthlink.com:4433/soa-infra/services/Common/ErrorHandlingDCASCmpService/errorhandlingdcasabcsimpl_client_ep?WSDL" soapVersion="1.1">
+         <wsp:PolicyReference orawsp:category="security" orawsp:status="enabled" URI="oracle/wss_username_token_client_policy"/>
+         <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false">WSDLDriven</property>
+         <property name="oracle.webservices.local.optimization" many="false">false</property>
+         <property name="csf-key" type="xs:string" many="false">ESB-SOA-KEY</property>
+      </binding.ws>
+   </reference>
+   <reference name="GetSLCP" ui:wsdlLocation="GetSLCP.wsdl">
+      <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/http/EnrollApp/EAGetBenchMarkPlanService/GetSLCP#wsdl.interface(Request_Response_ptt)"/>
+      <binding.ws port="http://xmlns.oracle.com/pcbpel/adapter/http/EnrollApp/EAGetBenchMarkPlanService/GetSLCP#wsdl.endpoint(GetSLCP/Request_Response_pt)" location="GetSLCP.wsdl" supports="http">
+         <property name="http.verb" type="xs:string" many="false">POST</property>
+         <property name="endpointURI" type="xs:string" many="false">http://enroll-preprod.dchbx.org/api/v1/slcsp/plan</property>
+         <property name="http.payload" type="xs:string" many="false">xml</property>
+      </binding.ws>
+   </reference>
+   <reference name="GetEHBPremium" ui:wsdlLocation="GetEHBPremium.wsdl">
+      <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/http/EnrollApp/EAGetBenchMarkPlanService/GetEHBPremium#wsdl.interface(Request_Response_ptt)"/>
+      <binding.ws port="http://xmlns.oracle.com/pcbpel/adapter/http/EnrollApp/EAGetBenchMarkPlanService/GetEHBPremium#wsdl.endpoint(GetEHBPremium/Request_Response_pt)" location="GetEHBPremium.wsdl" supports="http">
+         <property name="http.verb" type="xs:string" many="false">POST</property>
+         <property name="endpointURI" type="xs:string" many="false">http://10.83.85.127/api/v2/generate_quote</property>
+         <property name="http.payload" type="xs:string" many="false">xml</property>
+      </binding.ws>
+   </reference>
+   <wire>
+      <source.uri>eagetbenchmarkplanabcsimpl_client_ep</source.uri>
+      <target.uri>EAGetBenchMarkPlanABCSImpl/eagetbenchmarkplanabcsimpl_client</target.uri>
+   </wire>
+   <wire>
+      <source.uri>EAGetBenchMarkPlanABCSImpl/ErrorHandling</source.uri>
+      <target.uri>ErrorHandling</target.uri>
+   </wire>
+   <wire>
+      <source.uri>EAGetBenchMarkPlanABCSImpl/GetSLCP</source.uri>
+      <target.uri>GetSLCP</target.uri>
+   </wire>
+   <wire>
+      <source.uri>EAGetBenchMarkPlanABCSImpl/GetEHBPremium</source.uri>
+      <target.uri>GetEHBPremium</target.uri>
+   </wire>
+</composite>

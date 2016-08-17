@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="ErrorHandlingDCASABCSImpl" targetNamespace="http://xmlns.oracle.com/DCAS_DEV5/ErrorHandlingDCASCmpService/ErrorHandlingDCASABCSImpl" xmlns:ns1="http://xmlns.dhs.dc.gov/DCAS/ESB/ErrorHandlingService/V1" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:client="http://xmlns.oracle.com/DCAS_DEV5/ErrorHandlingDCASCmpService/ErrorHandlingDCASABCSImpl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+   <plnk:partnerLinkType name="ErrorHandlingDCASABCSImpl">
+      <plnk:role name="ErrorHandlingDCASABCSImplProvider">
+         <plnk:portType name="client:ErrorHandlingDCASABCSImpl"/>
+      </plnk:role>
+   </plnk:partnerLinkType>
+   <wsdl:types>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+         <xsd:import namespace="http://xmlns.dhs.dc.gov/DCAS/ESB/ErrorHandlingService/V1" schemaLocation="xsd/ErrorHandling.xsd"/>
+      </xsd:schema>
+   </wsdl:types>
+   <wsdl:message name="ErrorHandlingDCASABCSImplRequestMessage">
+      <wsdl:part name="payload" element="ns1:ErrorMessage"/>
+   </wsdl:message>
+   <wsdl:portType name="ErrorHandlingDCASABCSImpl">
+      <wsdl:operation name="process">
+         <wsdl:input message="client:ErrorHandlingDCASABCSImplRequestMessage"/>
+      </wsdl:operation>
+   </wsdl:portType>
+</wsdl:definitions>

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="EAGetBenchMarkPlanABCSImpl" targetNamespace="http://xmlns.oracle.com/NEW_APP/EAGetBenchMarkPlanService/EAGetBenchMarkPlanABCSImpl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/NEW_APP/EAGetBenchMarkPlanService/EAGetBenchMarkPlanABCSImpl" xmlns:ns2="http://schemas.oracle.com/bpel/extension" xmlns:ns1="http://xmlns.dc.gov/DCAS/ESB/CTCService/V1" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+   <plnk:partnerLinkType name="EAGetBenchMarkPlanABCSImpl">
+      <plnk:role name="EAGetBenchMarkPlanABCSImplProvider">
+         <plnk:portType name="client:EAGetBenchMarkPlanABCSImpl"/>
+      </plnk:role>
+   </plnk:partnerLinkType>
+   <wsdl:import namespace="http://schemas.oracle.com/bpel/extension" location="RuntimeFault.wsdl"/>
+   <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema">
+         <import namespace="http://xmlns.dc.gov/DCAS/ESB/CTCService/V1" schemaLocation="xsd/ESB_CTC.xsd"/>
+      </schema>
+   </wsdl:types>
+   <wsdl:message name="EAGetBenchMarkPlanABCSImplRequestMessage">
+      <wsdl:part name="payload" element="ns1:get-benchmark-plan-request"/>
+   </wsdl:message>
+   <wsdl:message name="EAGetBenchMarkPlanABCSImplResponseMessage">
+      <wsdl:part name="payload" element="ns1:get-benchmark-plan-response"/>
+   </wsdl:message>
+   <wsdl:portType name="EAGetBenchMarkPlanABCSImpl">
+      <wsdl:operation name="process">
+         <wsdl:input message="client:EAGetBenchMarkPlanABCSImplRequestMessage"/>
+         <wsdl:output message="client:EAGetBenchMarkPlanABCSImplResponseMessage"/>
+      </wsdl:operation>
+   </wsdl:portType>
+</wsdl:definitions>

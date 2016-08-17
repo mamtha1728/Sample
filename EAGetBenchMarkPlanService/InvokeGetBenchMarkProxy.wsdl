@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<WL5G3N0:definitions xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="http://openhbx.org/api/terms/1.0" xmlns:WL5G3N2="http://xmlns.oracle.com/enrolapp/getbenchmark/service/wsdl/v1" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://xmlns.oracle.com/enrolapp/getbenchmark/service/wsdl/v1">
+   <WL5G3N0:types>
+      <xsd:schema xmlns:bench="http://openhbx.org/api/terms/1.0" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://xmlns.oracle.com/enrolapp/getbenchmark/service/wsdl/v1" xmlns:xdgdecv="http://xmlns.dc.gov/DCAS/ESB/CTCService/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/enrolapp/getbenchmark/service/wsdl/v1/types"/>
+      <xsd:schema xmlns:bench="http://openhbx.org/api/terms/1.0" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://xmlns.oracle.com/enrolapp/getbenchmark/service/wsdl/v1" xmlns:xdgdecv="http://xmlns.dc.gov/DCAS/ESB/CTCService/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+         <xsd:import namespace="http://xmlns.dc.gov/DCAS/ESB/CTCService/V1" schemaLocation="xsd/ESB_CTC.xsd"/>
+      </xsd:schema>
+      <xsd:schema xmlns:bench="http://openhbx.org/api/terms/1.0" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://xmlns.oracle.com/enrolapp/getbenchmark/service/wsdl/v1" xmlns:xdgdecv="http://xmlns.dc.gov/DCAS/ESB/CTCService/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+         <xsd:import namespace="http://xmlns.dc.gov/DCAS/ESB/CTCService/V1" schemaLocation="xsd/ESB_CTCTypes.xsd"/>
+      </xsd:schema>
+      <xsd:schema xmlns:bench="http://openhbx.org/api/terms/1.0" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://xmlns.oracle.com/enrolapp/getbenchmark/service/wsdl/v1" xmlns:xdgdecv="http://xmlns.dc.gov/DCAS/ESB/CTCService/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+         <xsd:import namespace="http://openhbx.org/api/terms/1.0" schemaLocation="xsd/individual.xsd"/>
+      </xsd:schema>
+      <xsd:schema xmlns:bench="http://openhbx.org/api/terms/1.0" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://xmlns.oracle.com/enrolapp/getbenchmark/service/wsdl/v1" xmlns:xdgdecv="http://xmlns.dc.gov/DCAS/ESB/CTCService/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+         <xsd:import namespace="http://openhbx.org/api/terms/1.0" schemaLocation="xsd/links.xsd"/>
+      </xsd:schema>
+      <xsd:schema xmlns:bench="http://openhbx.org/api/terms/1.0" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://xmlns.oracle.com/enrolapp/getbenchmark/service/wsdl/v1" xmlns:xdgdecv="http://xmlns.dc.gov/DCAS/ESB/CTCService/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+         <xsd:import namespace="http://openhbx.org/api/terms/1.0" schemaLocation="xsd/organization.xsd"/>
+      </xsd:schema>
+      <xsd:schema xmlns:bench="http://openhbx.org/api/terms/1.0" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://xmlns.oracle.com/enrolapp/getbenchmark/service/wsdl/v1" xmlns:xdgdecv="http://xmlns.dc.gov/DCAS/ESB/CTCService/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+         <xsd:import namespace="http://openhbx.org/api/terms/1.0" schemaLocation="xsd/plan.xsd"/>
+      </xsd:schema>
+      <xsd:schema xmlns:bench="http://openhbx.org/api/terms/1.0" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://xmlns.oracle.com/enrolapp/getbenchmark/service/wsdl/v1" xmlns:xdgdecv="http://xmlns.dc.gov/DCAS/ESB/CTCService/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+         <xsd:import namespace="http://openhbx.org/api/terms/1.0" schemaLocation="xsd/policy.xsd"/>
+      </xsd:schema>
+   </WL5G3N0:types>
+   <WL5G3N0:message name="BenchMarkPlanReqMsg">
+      <WL5G3N0:part element="WL5G3N1:benchmark_plan_request" name="BenchMarkPlanReq"/>
+   </WL5G3N0:message>
+   <WL5G3N0:message name="BenchMarkPlanResMsg">
+      <WL5G3N0:part element="WL5G3N1:benchmark_plan" name="BenchMarkPlanRes"/>
+   </WL5G3N0:message>
+   <WL5G3N0:message name="BenchMarkCoverageQuoteReqMsg">
+      <WL5G3N0:part element="WL5G3N1:coverage_quote_request" name="BenchMarkCoverageQuoteReq"/>
+   </WL5G3N0:message>
+   <WL5G3N0:message name="BenchMarkCoverageQuoteResMsg">
+      <WL5G3N0:part element="WL5G3N1:coverage_quote" name="BenchMarkCoverageQuoteRes"/>
+   </WL5G3N0:message>
+   <WL5G3N0:portType name="GetBechMarkPortType">
+      <WL5G3N0:operation name="GetBenchMarkPlan">
+         <WL5G3N0:input message="WL5G3N2:BenchMarkPlanReqMsg"/>
+         <WL5G3N0:output message="WL5G3N2:BenchMarkPlanResMsg"/>
+      </WL5G3N0:operation>
+      <WL5G3N0:operation name="GetBenchMarkCoverageQuote">
+         <WL5G3N0:input message="WL5G3N2:BenchMarkCoverageQuoteReqMsg"/>
+         <WL5G3N0:output message="WL5G3N2:BenchMarkCoverageQuoteResMsg"/>
+      </WL5G3N0:operation>
+   </WL5G3N0:portType>
+   <WL5G3N0:binding name="GetBechMarkPortTypeBinding" type="WL5G3N2:GetBechMarkPortType">
+      <WL5G3N3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <WL5G3N0:operation name="GetBenchMarkPlan">
+         <WL5G3N3:operation soapAction="http://xmlns.oracle.com/enrolapp/getbenchmark/service/wsdl/v1/GetBechMarkPlan" style="document"/>
+         <WL5G3N0:input>
+            <WL5G3N3:body parts="BenchMarkPlanReq" use="literal"/>
+         </WL5G3N0:input>
+         <WL5G3N0:output>
+            <WL5G3N3:body parts="BenchMarkPlanRes" use="literal"/>
+         </WL5G3N0:output>
+      </WL5G3N0:operation>
+      <WL5G3N0:operation name="GetBenchMarkCoverageQuote">
+         <WL5G3N3:operation soapAction="http://xmlns.oracle.com/enrolapp/getbenchmark/service/wsdl/v1/GetBechMarkCoverageQuote" style="document"/>
+         <WL5G3N0:input>
+            <WL5G3N3:body parts="BenchMarkCoverageQuoteReq" use="literal"/>
+         </WL5G3N0:input>
+         <WL5G3N0:output>
+            <WL5G3N3:body parts="BenchMarkCoverageQuoteRes" use="literal"/>
+         </WL5G3N0:output>
+      </WL5G3N0:operation>
+   </WL5G3N0:binding>
+   <WL5G3N0:service name="GetBechMarkPortTypeBindingQSService">
+      <WL5G3N0:port binding="WL5G3N2:GetBechMarkPortTypeBinding" name="GetBechMarkPortTypeBindingQSPort">
+         <WL5G3N3:address location="http://DHSDCASESBSOAJMYDEV01.dhs.dc.gov:8011/EnrollApp/BENCHMARK/ProxyService/GetBenchMarkService"/>
+      </WL5G3N0:port>
+   </WL5G3N0:service>
+</WL5G3N0:definitions>

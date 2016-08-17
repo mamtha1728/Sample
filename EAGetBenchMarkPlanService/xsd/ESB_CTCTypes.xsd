@@ -1,0 +1,870 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns:ns1="http://xmlns.dc.gov/DCAS/ESB/CTCService/V1" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://xmlns.dc.gov/DCAS/ESB/CTCService/V1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:simpleType name="ZipCode">
+      <xs:annotation>
+         <xs:documentation>Allow 5 digit format or 5-4 format</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="([0-9]{5}(-[0-9]{4})?)|[0-9]{0}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="State">
+      <xs:annotation>
+         <xs:documentation>State Abbreviation</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[A-Z]{0,2}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="ProductLine">
+      <xs:annotation>
+         <xs:documentation>ProductLine Identifier</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string"/>
+   </xs:simpleType>
+   <xs:simpleType name="Gender">
+      <xs:annotation>
+         <xs:documentation>M/F</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="M|F"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:complexType name="Guardian">
+      <xs:annotation>
+         <xs:documentation>Data Structure for Guardian</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="guardian-info" type="ns1:Contact" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Guardian Contact Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Member">
+      <xs:annotation>
+         <xs:documentation>Data Structure for Member Ids</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="person-id" type="xs:string" minOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Exchange Member Id</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="carrier-subscriber-id" type="xs:string" minOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Carrier Subscriber Id</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="carrier-member-id" type="xs:string" minOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Carrier Member Id</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Members">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing Members</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="member" type="ns1:Member" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Member.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Persons">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing Persons records</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="value" type="ns1:Person" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Person</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Person">
+      <xs:annotation>
+         <xs:documentation>Data Structure for Applicant Demographic / Contact Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="person-id" type="xs:string" minOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Exchange Member Id</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="subscriber-id" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Exchange Subscriber Id</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="contact-info" type="ns1:Contact" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Person's Contact Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ssn" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Social Security Number</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="gender" type="ns1:Gender" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>M/F</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="birth-date" type="xs:date" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Birth Date of Person</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="tobacco-user" type="xs:boolean" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Tobbaco use indicator - True / False</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="natve-american" type="xs:boolean" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>American Indian / Alaska Native Indicator - True / False</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="provider" type="ns1:Providers" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>One to Many Provider</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="employment-class" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Employment Class</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="employment-status" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Employment Status</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="employment-date-of-hire" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Employment Date of Hire</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="custom" type="ns1:Custom" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Custom Values</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Employees">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing Employee records</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="value" type="ns1:Employee" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Employee</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Employee">
+      <xs:annotation>
+         <xs:documentation>Data Structure for Employee Demographic / Contact Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="contact-info" type="ns1:Contact" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Contact Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ssn" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Social Security Number</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="gender" type="ns1:Gender" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>M/F</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="birth-date" type="xs:date" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Birth Date of Person</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="hire-date" type="xs:date" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Hire Date of Employee</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="employment-class" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Employment Class</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="employment-status" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Employment Status</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="custom" type="ns1:Custom" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Custom Values</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="EmployeeEnrollments">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing Employee Enrollment Ids</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="value" type="xs:string" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Employee enrollment id</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="SelectedCoverageDetails">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing Selected Coverage Details</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="product-line" type="ns1:ProductLine" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Product Line</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="coverage-waived" type="xs:boolean" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Has the enrollment group waived this product line?</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="contribution-amount" type="xs:float" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Contribution amount</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="plan" type="ns1:Plan" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Details for the selected plan</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="SelectedCoverage">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing Selected Coverage records</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="selected-coverage-details" type="ns1:SelectedCoverageDetails" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Selected Coverage Details</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="OfferedCoverageDetails">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing Offered Coverage Details</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="product-line" type="ns1:ProductLine" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Product Line</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="employee-only-contribution-amount" type="xs:float" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Contribution dollar amount or percent</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="employee-only-lowest-premium-amount" type="xs:float" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Cost of the cheapest plan offered to the employee</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="number-of-plans" type="xs:integer" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Number of plans the employer is offering</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="OfferedCoverage">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing Offered Coverage records</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="coverage-type" type="xs:string" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Coverage Type (Employee Only - EE, or Employee Dependent - ED)</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="offered-coverage-details" type="ns1:OfferedCoverageDetails" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Coverage Details</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Employers">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing Employer records</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="employer-details" type="ns1:EmployerDetails" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Employer</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="EmployerDetails">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing Offered Coverage Details</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="employer" type="ns1:Employer" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Employer Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="offered-coverage" type="ns1:OfferedCoverage" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Offered Coverage Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Employer">
+      <xs:annotation>
+         <xs:documentation>Data Structure for Employer / Contact Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="employer-id" type="xs:string" minOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Employer Id</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="employer-identification-number" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Employer Identification Number</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="employer-name" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Name of the Employer</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="address-line-1" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Address of the Employer</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="address-line-2" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Address of the Employer</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="city" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>City of the Employer</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="state" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>State of the Employer</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="zip" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Zip of the Employer</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="contact-info" type="ns1:Contact" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Primary Contact Information for the Employer</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="assistors" type="ns1:Assistors" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Primary Contact Information for the Employer</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="custom" type="ns1:Custom" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Custom Values</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="status" type="xs:string" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Employer Status(Active, Cancelled)</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="open-enrollment-start-date" type="xs:date" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Date open enrollment begins</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="open-enrollment-end-date" type="xs:date" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Date open enrollment ends</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="coverage-start-date" type="xs:date" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Date coverage begins</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="coverage-end-date" type="xs:date" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Date coverage ends</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="enrollment-type" type="xs:string" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Enrollment Type(Renewal, Special, Initial)</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Carrier">
+      <xs:annotation>
+         <xs:documentation>Data Structure for Carrier Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="carrier-name" type="xs:string" minOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Name of the Carrier</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="carrier-id" type="xs:string" minOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Id of the Carrier</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="address-line-1" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Address of the Carrier</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="address-line-2" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Address of the Carrier</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="city" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>City of the Carrier</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="state" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>State of the Carrier</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="zip" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Zip of the Carrier</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="contact-info" type="ns1:Contact" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Primary Contact Information for the Carrier</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="custom" type="ns1:Custom" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Custom Values</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Provider">
+      <xs:annotation>
+         <xs:documentation>Data Structure for Care Provider Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="provider-id" type="xs:string" minOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Id of the Provider</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="provider-name" type="xs:string" minOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Name of the Provider</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="provider-type" type="xs:string" minOccurs="1">
+            <xs:annotation>
+               <xs:documentation>type of the Provider</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="provider-specialty" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Specialty of the Provider</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="address-line-1" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Address of the Provider</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="address-line-2" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Address of the Provider</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="city" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>City of the Provider</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="state" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>State of the Provider</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="zip" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Zip of the Provider</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="custom" type="ns1:Custom" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Custom Values</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Providers">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure for Provider List </xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="provider" type="ns1:Provider" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Provider Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Applicants">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure for Primary, Spouse and Children </xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="primary" type="ns1:Person">
+            <xs:annotation>
+               <xs:documentation>Primary Applicant Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="spouse" type="ns1:Person" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Spouse Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="child" type="ns1:Person" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Child Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Plan">
+      <xs:annotation>
+         <xs:documentation>Data Structure for Plan Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="plan-id" type="xs:string" minOccurs="1"/>
+         <xs:element name="plan-carrier" type="ns1:Carrier" minOccurs="1"/>
+         <xs:element name="plan-name" type="xs:string" minOccurs="1"/>
+         <xs:element name="plan-description" type="xs:string" minOccurs="0"/>
+         <xs:element name="plan-type" type="xs:string" minOccurs="0"/>
+         <xs:element name="plan-tier" type="xs:string" minOccurs="0"/>
+         <xs:element name="product-line" type="ns1:ProductLine" minOccurs="0"/>
+         <xs:element name="provider-network" type="xs:string" minOccurs="0"/>
+         <xs:element name="rate-area" type="xs:string" minOccurs="0"/>
+         <xs:element name="premium" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="ehb-premium" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="person-premiums" type="ns1:PersonPremiums" minOccurs="0"/>
+         <xs:element name="ehb-percent" type="xs:float" minOccurs="0"/>
+         <xs:element name="deductible" type="xs:float" minOccurs="0"/>
+         <xs:element name="oon-deductible" type="xs:float" minOccurs="0"/>
+         <xs:element name="oop-max" type="xs:float" minOccurs="0"/>
+         <xs:element name="coinsurance-percent" type="xs:float" minOccurs="0"/>
+         <xs:element name="office-visit-percent" type="xs:float" minOccurs="0"/>
+         <xs:element name="physician-visit" type="xs:float" minOccurs="0"/>
+         <xs:element name="spclst-visit" type="xs:float" minOccurs="0"/>
+         <xs:element name="urgent-care-visit" type="xs:float" minOccurs="0"/>
+         <xs:element name="er-visit" type="xs:float" minOccurs="0"/>
+         <xs:element name="generic-rx" type="xs:float" minOccurs="0"/>
+         <xs:element name="preferred-brand-rx" type="xs:float" minOccurs="0"/>
+         <xs:element name="non-pref-brand-rx" type="xs:float" minOccurs="0"/>
+         <xs:element name="specialty-drugs" type="xs:float" minOccurs="0"/>
+         <xs:element name="hsa-eligible" type="xs:boolean" minOccurs="0"/>
+         <xs:element name="provider-url" type="xs:string" minOccurs="0"/>
+         <xs:element name="brochure-url" type="xs:string" minOccurs="0"/>
+         <xs:element name="disclaimer" type="xs:string" minOccurs="0"/>
+         <xs:element name="options" type="ns1:Options" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Plans">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing plans</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="plan" type="ns1:Plan" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Plans to applied for.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Contact">
+      <xs:annotation>
+         <xs:documentation>Data Structure for Contact Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="first-name" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>First Name</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="middle-name" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Middle Name </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="last-name" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Last Name </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="suffix" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Suffix</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="address-line-1" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Residence Address</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="address-line-2" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Additionl Residence Address Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="city" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>City of Residence</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="county" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>County of Residence</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="state" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>State of Residence</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="zip" type="ns1:ZipCode" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Zip Code of Residence - 5 digit or 5-4 format</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="work-phone" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Work Phone #</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="work-phone-extension" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Work Phone Extension #</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="home-phone" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Home Phone #</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="mobile-phone" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Mobile Phone #</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="fax" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation> Fax #</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="email" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation> Email Address</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Signatures">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing signatures</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="signature" type="ns1:Signature" minOccurs="1" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Signature Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Signature">
+      <xs:annotation>
+         <xs:documentation>Data Structure for Signature Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="first-name" type="xs:string" minOccurs="1"/>
+         <xs:element name="middle-name" type="xs:string" minOccurs="0"/>
+         <xs:element name="last-name" type="xs:string" minOccurs="1"/>
+         <xs:element name="suffix" type="xs:string" minOccurs="0"/>
+         <xs:element name="signature-date" type="xs:date" minOccurs="1"/>
+         <xs:element name="terms-accepted" type="xs:boolean" minOccurs="1"/>
+         <xs:element name="assistor-type" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Assistors">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing Assistors</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="assistor" type="ns1:Assistor" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Assistor Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Assistor">
+      <xs:annotation>
+         <xs:documentation>Data Structure for Assistor Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="assitor-id" type="xs:string" minOccurs="0"/>
+         <xs:element name="license-id" type="xs:string" minOccurs="0"/>
+         <xs:element name="conatact-info" type="ns1:Contact" minOccurs="1"/>
+         <xs:element name="assistor-type" type="xs:string" minOccurs="1"/>
+         <xs:element name="organization" type="xs:string"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Options">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing plan options</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="option" type="ns1:Option" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Plans option.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Option">
+      <xs:annotation>
+         <xs:documentation>Data Structure for Plan Option Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="key" type="xs:string"/>
+         <xs:element name="name" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="values" type="ns1:OptionValues"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="OptionValues">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing plan option values</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="value" type="ns1:OptionValue" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Plans option.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="OptionValue">
+      <xs:annotation>
+         <xs:documentation>Data Structure for Plan Option Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="key" type="xs:string"/>
+         <xs:element name="value" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="selected" type="xs:boolean" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="PersonPremiums">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing person level premiums</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="person-premium" type="ns1:PersonPremium" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Person Level Premium.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="PersonPremium">
+      <xs:annotation>
+         <xs:documentation>Data Structure for Person Premium</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="person-id" type="xs:string"/>
+         <xs:element name="premium" type="xs:decimal"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Custom">
+      <xs:annotation>
+         <xs:documentation>Data Structure for Custom Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="key" type="xs:string"/>
+         <xs:element name="value" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Messages">
+      <xs:annotation>
+         <xs:documentation>High Level Data Structure containing messages</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="message" type="ns1:Message" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Error.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Message">
+      <xs:annotation>
+         <xs:documentation>Data Structure for Error Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="key" type="xs:string"/>
+         <xs:element name="name" type="xs:string"/>
+         <xs:element name="description" type="xs:string"/>
+         <xs:element name="severity-key" type="xs:string"/>
+         <xs:element name="severity-name" type="xs:string"/>
+         <xs:element name="severity-description" type="xs:string"/>
+         <xs:element name="additional-information" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

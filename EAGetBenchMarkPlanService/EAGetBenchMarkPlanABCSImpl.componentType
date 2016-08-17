@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<componentType xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ui="http://xmlns.oracle.com/soa/designer/">
+   <service name="eagetbenchmarkplanabcsimpl_client" ui:wsdlLocation="EAGetBenchMarkPlanABCSImpl.wsdl">
+      <interface.wsdl interface="http://xmlns.oracle.com/NEW_APP/EAGetBenchMarkPlanService/EAGetBenchMarkPlanABCSImpl#wsdl.interface(EAGetBenchMarkPlanABCSImpl)"/>
+   </service>
+   <reference name="ErrorHandling" ui:wsdlLocation="ErrorHandlingDCASABCSImpl.wsdl">
+      <interface.wsdl interface="http://xmlns.oracle.com/DCAS_DEV5/ErrorHandlingDCASCmpService/ErrorHandlingDCASABCSImpl#wsdl.interface(ErrorHandlingDCASABCSImpl)"/>
+   </reference>
+   <reference name="GetSLCP" ui:wsdlLocation="GetSLCP.wsdl">
+      <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/http/EnrollApp/EAGetBenchMarkPlanService/GetSLCP#wsdl.interface(Request_Response_ptt)"/>
+   </reference>
+   <reference name="GetEHBPremium" ui:wsdlLocation="GetEHBPremium.wsdl">
+      <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/http/EnrollApp/EAGetBenchMarkPlanService/GetEHBPremium#wsdl.interface(Request_Response_ptt)"/>
+   </reference>
+</componentType>

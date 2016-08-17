@@ -1,0 +1,347 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns:ns1="http://xmlns.dc.gov/DCAS/ESB/CTCService/V1" elementFormDefault="qualified" targetNamespace="http://xmlns.dc.gov/DCAS/ESB/CTCService/V1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:include schemaLocation="ESB_CTCTypes.xsd"/>
+   <xs:element name="get-plan-details-request">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="plan-id" type="xs:string" minOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>The id of the requested plan</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="applicants" type="ns1:Applicants" minOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>The id of the requested plan</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="effective-date" type="xs:date" minOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>The id of the requested plan</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-plan-details-response">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="plan" type="ns1:Plan" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="messages" type="ns1:Messages" minOccurs="0"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-enrollment-details-request">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="enrollment-id" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>The id of the requested application</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-enrollment-details-response">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="applicants" type="ns1:Applicants" minOccurs="1"/>
+            <xs:element name="selected-coverage" type="ns1:SelectedCoverage" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="employer" type="ns1:Employer" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="employer-contribution-amount" type="xs:float" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="employer-coverage-waived" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="billing-id" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="enrollment-period" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="other-payment-amount" type="xs:float" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="premium-tax-credit-used" type="xs:float" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="premium-tax-credit-with-taxes" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="eligibility-verified" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="signatures" type="ns1:Signatures" minOccurs="1"/>
+            <xs:element name="active-assistor" type="ns1:Assistor" minOccurs="0"/>
+            <xs:element name="assistors" type="ns1:Assistors" minOccurs="0"/>
+            <xs:element name="guardian" type="ns1:Guardian" minOccurs="0"/>
+            <xs:element name="coverage-start-date" type="xs:date" minOccurs="0"/>
+            <xs:element name="coverage-end-date" type="xs:date" minOccurs="0"/>
+            <xs:element name="messages" type="ns1:Messages" minOccurs="0"/>
+            <xs:element name="custom" type="ns1:Custom" minOccurs="0"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="is-shop-member-request">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="person" type="ns1:Person">
+               <xs:annotation>
+                  <xs:documentation>The person to check if shop member</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="effective-date" type="xs:date">
+               <xs:annotation>
+                  <xs:documentation>The effective date of the new coverage</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="is-shop-member-response">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="shop-member" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="submitted-enrollment-form" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="employer" type="ns1:Employers" minOccurs="0" maxOccurs="1"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-benchmark-plan-request">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="applicants" type="ns1:Applicants">
+               <xs:annotation>
+                  <xs:documentation>Applicants</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="effective-date" type="xs:date">
+               <xs:annotation>
+                  <xs:documentation>The effective date of the new coverage</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-benchmark-plan-response">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="plan" type="ns1:Plan" minOccurs="0" maxOccurs="1"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-plan-availability-request">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="plan-id" type="xs:string"/>
+            <xs:element name="effective-date" type="xs:date">
+               <xs:annotation>
+                  <xs:documentation>The requested effective date of the application</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="applicants" type="ns1:Applicants"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-plan-availability-response">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="available" type="xs:boolean" minOccurs="1"/>
+            <xs:element name="messages" type="ns1:Messages" minOccurs="0"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-policy-id-request">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="enrollment-id" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>The id of the requested application</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-policy-id-response">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="policy-id" type="xs:string" minOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>The policy id of the requested application</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="member" type="ns1:Members" minOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>Member ID Information</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-employer-disenrollment-details-request">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="employer-disenrollment-id" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>The id of the employer disenrollment</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-employer-disenrollment-details-response">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="employer" type="ns1:Employer" minOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>The employer information</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="employer-disenrollment-date" type="xs:date" minOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>The date the employer disenrollment was submitted</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="requested-coverage-end-date" type="xs:date" minOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>Requested Coverage end date.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="person" type="ns1:Persons" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>List of Employees</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-open-enrollment-details-request">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="employer-enrollment-id" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>The id of the employer enrollment</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-open-enrollment-details-response">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="employer" type="ns1:EmployerDetails" minOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>The employer information</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="employee" type="ns1:Employees" minOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>List of Employees</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-employer-final-enrollment-details-request">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="employer-enrollment-id" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>The id of the employer enrollment</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-employer-final-enrollment-details-response">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="employer" type="ns1:Employer" minOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>The employer information</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="employee-enrollments" type="ns1:EmployeeEnrollments" minOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>List of Employee Enrollment Ids</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-termination-details-request">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="termination-id" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>Notification id</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-termination-details-response">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="employer" type="ns1:Employer" minOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>The employer information</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="employee" type="ns1:Employee" minOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>The employee information</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="termination-date" type="xs:date" minOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>The date of termination</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="requested-coverage-end-date" type="xs:date" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>The requested coverage end date</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-plan-decertification-details-request">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="decertification-id" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>The id of the plan decertification</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-plan-decertification-details-response">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="plans" type="ns1:Plan" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="decertification-date" type="xs:date" minOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>The date the plan got decertified.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="messages" type="ns1:Messages" minOccurs="0"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-are-new-plans-available-request">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="effective-date" type="xs:date" minOccurs="1" maxOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>The requested effective date to check plan availability</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="applicants" type="ns1:Applicants"/>
+            <xs:element name="previous-zipcode" type="xs:string" minOccurs="1" maxOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>The zipcode used in previous enrollment</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="previous-county" type="xs:string" minOccurs="1" maxOccurs="1">
+               <xs:annotation>
+                  <xs:documentation>The county used in previous enrollment</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="get-are-new-plans-available-response">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="new-plans-available" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="messages" type="ns1:Messages" minOccurs="0"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>

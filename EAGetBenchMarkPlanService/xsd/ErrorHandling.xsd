@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xmlns.dhs.dc.gov/DCAS/ESB/ErrorHandlingService/V1" targetNamespace="http://xmlns.dhs.dc.gov/DCAS/ESB/ErrorHandlingService/V1" elementFormDefault="qualified">
+   <xsd:element name="ErrorMessage" type="tns:ErrorMessageType">
+      <xsd:annotation>
+         <xsd:documentation>Error Message Element</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:complexType name="ErrorMessageType">
+      <xsd:sequence>
+         <xsd:element name="Header" type="tns:HeaderType" minOccurs="0"/>
+         <xsd:element name="MessageBody" type="tns:MessageBodyType" minOccurs="0"/>
+         <xsd:element name="Footer" type="tns:FooterType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="HeaderType">
+      <xsd:sequence>
+         <xsd:element name="GUID" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="TRXID" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="TRXName" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SenderID" type="xsd:string" minOccurs="1"/>
+         <xsd:element name="SenderName" type="xsd:string" minOccurs="1"/>
+         <xsd:element name="ServiceName" type="xsd:string" minOccurs="1"/>
+         <xsd:element name="CompositeName" type="xsd:string" minOccurs="1"/>
+         <xsd:element name="BusinessKey" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="JMSTopicName" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="JMSMessageID" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="JMSCorrelationID" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="EnvironmentName" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Component" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="TargetID" type="xsd:string" minOccurs="1"/>
+         <xsd:element name="SourceID" type="xsd:string" minOccurs="1"/>
+         <xsd:element name="PointOfFailureID" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="InstanceID" type="xsd:string" minOccurs="1"/>
+         <xsd:element name="Field1" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Field2" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="MessageBodyType">
+      <xsd:sequence>
+         <xsd:element name="ErrorCode" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ErrorType" type="xsd:string" minOccurs="1"/>
+         <xsd:element name="ErrorDesc" type="xsd:string" minOccurs="1"/>
+         <xsd:element name="ErrorSeverity" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ErrorMsg" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="InputMsg" type="xsd:string" minOccurs="1"/>
+         <xsd:element name="ReadProperty" minOccurs="0">
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="Name" type="xsd:string" minOccurs="0"/>
+                  <xsd:element name="Value" type="xsd:string" minOccurs="0"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+         <xsd:element name="WriteProperty" minOccurs="0">
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="Name" type="xsd:string" minOccurs="0"/>
+                  <xsd:element name="Value" type="xsd:string" minOccurs="0"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+         <xsd:element name="Audit" minOccurs="0">
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="StepNo" type="xsd:string" minOccurs="0"/>
+                  <xsd:element name="StepName" type="xsd:string" minOccurs="0"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="FooterType">
+      <xsd:sequence>
+         <xsd:element name="TimeStamp" type="xsd:string" minOccurs="1"/>
+      </xsd:sequence>
+   </xsd:complexType>
+</xsd:schema>

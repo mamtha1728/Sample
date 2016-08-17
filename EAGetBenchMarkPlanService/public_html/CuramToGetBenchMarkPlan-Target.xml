@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bench:benchmark_plan_request xmlns:bench="http://openhbx.org/api/terms/1.0">
+   <bench:coverage_start>2016-01-01</bench:coverage_start>
+</bench:benchmark_plan_request>
